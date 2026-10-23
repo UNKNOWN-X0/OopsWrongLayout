@@ -16,9 +16,9 @@ Two small, dependency-free browser tools for a keyboard gone wrong.
 
 ## What's in here
 
-| Tool | File | What it does |
-|---|---|---|
-| **Layout Fix** | `index.html` | Undoes text typed in the wrong keyboard layout |
+| Tool              | File          | What it does                                             |
+| ----------------- | ------------- | -------------------------------------------------------- |
+| **Layout Fix**    | `index.html`  | Undoes text typed in the wrong keyboard layout           |
 | **Romaji → Kana** | `romaji.html` | Converts typed Japanese romaji into hiragana or katakana |
 
 Both are static pages — open them directly in a browser, or serve the folder with anything. No npm install, no bundler, no framework.
@@ -29,7 +29,7 @@ Both are static pages — open them directly in a browser, or serve the folder w
 
 Typed a whole sentence in the wrong keyboard layout and only noticed at the end? Paste the garbled result, tell it which two layouts were involved, and it reconstructs what you meant to type.
 
-**How it works:** every layout table maps *physical key positions* to characters. Converting a piece of text just means: for each character, find the physical key that produced it in the layout you were typing in, then read off what that same key produces in the layout you meant to use. It's the same trick tools like Punto Switcher use — no dictionaries, no guessing, purely mechanical and reversible.
+**How it works:** every layout table maps _physical key positions_ to characters. Converting a piece of text just means: for each character, find the physical key that produced it in the layout you were typing in, then read off what that same key produces in the layout you meant to use. It's the same trick tools like Punto Switcher use — no dictionaries, no guessing, purely mechanical and reversible.
 
 ```
 "l;ylfu"  typed as US-QWERTY, meant as Thai   →  "สวัสดี"

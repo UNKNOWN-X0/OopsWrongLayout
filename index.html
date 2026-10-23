@@ -1,86 +1,109 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Layout Fix — wrong-keyboard-language fixer</title>
-<link rel="stylesheet" href="style.css">
-<script>
-  // Apply saved theme before first paint to avoid a flash of the wrong theme.
-  // Full toggle logic (with the light/dark/system control) lives in theme.js.
-  (function () {
-    var saved = localStorage.getItem('theme');
-    if (saved === 'light' || saved === 'dark') {
-      document.documentElement.setAttribute('data-theme', saved);
-    }
-  })();
-</script>
-</head>
-<body>
-
-  <div class="theme-toggle" role="group" aria-label="Theme">
-    <button id="themeLight" title="Light" aria-label="Light theme">☀</button>
-    <button id="themeDark" title="Dark" aria-label="Dark theme">☾</button>
-    <button id="themeSystem" title="System" aria-label="Match system theme">◐</button>
-  </div>
-
-  <div class="key-row" aria-hidden="true">
-    <span class="cap">Q</span><span class="cap">W</span><span class="cap">E</span>
-    <span class="cap swapped">ๆ</span><span class="cap swapped">ไ</span><span class="cap swapped">ำ</span>
-  </div>
-
-  <nav class="tool-nav">
-    <a href="index.html" class="active">Layout Fix</a>
-    <a href="romaji.html">Romaji → Kana</a>
-  </nav>
-
-  <header>
-    <h1>Layout Fix</h1>
-    <p class="sub">Typed a whole sentence in the wrong keyboard layout? Paste it, pick the two layouts, get it back.</p>
-  </header>
-
-  <main>
-    <div class="controls">
-      <div class="field">
-        <label for="fromLayout">Typed as</label>
-        <select id="fromLayout"></select>
-      </div>
-
-      <button id="swapBtn" class="icon-btn" title="Swap layouts" aria-label="Swap layouts">⇄</button>
-
-      <div class="field">
-        <label for="toLayout">Should have been</label>
-        <select id="toLayout"></select>
-      </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Layout Fix — wrong-keyboard-language fixer</title>
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      // Apply saved theme before first paint to avoid a flash of the wrong theme.
+      // Full toggle logic (with the light/dark/system control) lives in theme.js.
+      (function () {
+        var saved = localStorage.getItem("theme");
+        if (saved === "light" || saved === "dark") {
+          document.documentElement.setAttribute("data-theme", saved);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="theme-toggle" role="group" aria-label="Theme">
+      <button id="themeLight" title="Light" aria-label="Light theme">☀</button>
+      <button id="themeDark" title="Dark" aria-label="Dark theme">☾</button>
+      <button id="themeSystem" title="System" aria-label="Match system theme">
+        ◐
+      </button>
     </div>
 
-    <div class="panes">
-      <div class="pane">
-        <label for="input">Garbled text</label>
-        <textarea id="input" placeholder="e.g. Ndhpvbc yfrkfdbif rkfdbfnehe..." spellcheck="false"></textarea>
-      </div>
-      <div class="pane">
-        <label for="output">Fixed text</label>
-        <textarea id="output" placeholder="Fixed text appears here" spellcheck="false" readonly></textarea>
-      </div>
+    <div class="key-row" aria-hidden="true">
+      <span class="cap">Q</span><span class="cap">W</span
+      ><span class="cap">E</span> <span class="cap swapped">ๆ</span
+      ><span class="cap swapped">ไ</span><span class="cap swapped">ำ</span>
     </div>
 
-    <div class="actions">
-      <button id="convertBtn" class="primary">Convert</button>
-      <button id="autoBtn">Auto-detect direction</button>
-      <button id="copyBtn">Copy result</button>
-    </div>
+    <nav class="tool-nav">
+      <a href="index.html" class="active">Layout Fix</a>
+      <a href="romaji.html">Romaji → Kana</a>
+    </nav>
 
-    <p id="meta" class="meta" role="status"></p>
+    <header>
+      <h1>Layout Fix</h1>
+      <p class="sub">
+        Typed a whole sentence in the wrong keyboard layout? Paste it, pick the
+        two layouts, get it back.
+      </p>
+    </header>
 
-    <p class="note">
-      Works by remapping each keystroke to the same physical key on the other layout — the same trick tools like Punto Switcher use.
-      Thai and German mappings cover the common keys; a few rare symbol keys may not be perfectly accurate.
-    </p>
-  </main>
+    <main>
+      <div class="controls">
+        <div class="field">
+          <label for="fromLayout">Typed as</label>
+          <select id="fromLayout"></select>
+        </div>
 
-  <script src="layouts.js"></script>
-  <script src="theme.js"></script>
-  <script src="script.js"></script>
-</body>
+        <button
+          id="swapBtn"
+          class="icon-btn"
+          title="Swap layouts"
+          aria-label="Swap layouts"
+        >
+          ⇄
+        </button>
+
+        <div class="field">
+          <label for="toLayout">Should have been</label>
+          <select id="toLayout"></select>
+        </div>
+      </div>
+
+      <div class="panes">
+        <div class="pane">
+          <label for="input">Garbled text</label>
+          <textarea
+            id="input"
+            placeholder="e.g. Ndhpvbc yfrkfdbif rkfdbfnehe..."
+            spellcheck="false"
+          ></textarea>
+        </div>
+        <div class="pane">
+          <label for="output">Fixed text</label>
+          <textarea
+            id="output"
+            placeholder="Fixed text appears here"
+            spellcheck="false"
+            readonly
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="convertBtn" class="primary">Convert</button>
+        <button id="autoBtn">Auto-detect direction</button>
+        <button id="copyBtn">Copy result</button>
+      </div>
+
+      <p id="meta" class="meta" role="status"></p>
+
+      <p class="note">
+        Works by remapping each keystroke to the same physical key on the other
+        layout — the same trick tools like Punto Switcher use. Thai and German
+        mappings cover the common keys; a few rare symbol keys may not be
+        perfectly accurate.
+      </p>
+    </main>
+
+    <script src="layouts.js"></script>
+    <script src="theme.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>

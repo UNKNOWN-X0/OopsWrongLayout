@@ -1,101 +1,125 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Romaji → Kana converter</title>
-<link rel="stylesheet" href="style.css">
-<script>
-  (function () {
-    var saved = localStorage.getItem('theme');
-    if (saved === 'light' || saved === 'dark') {
-      document.documentElement.setAttribute('data-theme', saved);
-    }
-  })();
-</script>
-</head>
-<body>
-
-  <div class="theme-toggle" role="group" aria-label="Theme">
-    <button id="themeLight" title="Light" aria-label="Light theme">☀</button>
-    <button id="themeDark" title="Dark" aria-label="Dark theme">☾</button>
-    <button id="themeSystem" title="System" aria-label="Match system theme">◐</button>
-  </div>
-
-  <nav class="tool-nav">
-    <a href="index.html">Layout Fix</a>
-    <a href="romaji.html" class="active">Romaji → Kana</a>
-  </nav>
-
-  <header>
-    <h1>Romaji → Kana</h1>
-    <p class="sub">Type Japanese in romaji, get hiragana or katakana back — sokuon, ん, and long vowels handled automatically.</p>
-  </header>
-
-  <main>
-    <div class="controls">
-      <div class="field">
-        <label for="kanaType">Output</label>
-        <select id="kanaType">
-          <option value="hiragana">Hiragana (ひらがな)</option>
-          <option value="katakana">Katakana (カタカナ)</option>
-        </select>
-      </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Romaji → Kana converter</title>
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      (function () {
+        var saved = localStorage.getItem("theme");
+        if (saved === "light" || saved === "dark") {
+          document.documentElement.setAttribute("data-theme", saved);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="theme-toggle" role="group" aria-label="Theme">
+      <button id="themeLight" title="Light" aria-label="Light theme">☀</button>
+      <button id="themeDark" title="Dark" aria-label="Dark theme">☾</button>
+      <button id="themeSystem" title="System" aria-label="Match system theme">
+        ◐
+      </button>
     </div>
 
-    <div class="panes">
-      <div class="pane">
-        <label for="romajiInput">Romaji</label>
-        <textarea id="romajiInput" placeholder="e.g. konnichiwa, kyuuto, kitte" spellcheck="false"></textarea>
+    <nav class="tool-nav">
+      <a href="index.html">Layout Fix</a>
+      <a href="romaji.html" class="active">Romaji → Kana</a>
+    </nav>
+
+    <header>
+      <h1>Romaji → Kana</h1>
+      <p class="sub">
+        Type Japanese in romaji, get hiragana or katakana back — sokuon, ん, and
+        long vowels handled automatically.
+      </p>
+    </header>
+
+    <main>
+      <div class="controls">
+        <div class="field">
+          <label for="kanaType">Output</label>
+          <select id="kanaType">
+            <option value="hiragana">Hiragana (ひらがな)</option>
+            <option value="katakana">Katakana (カタカナ)</option>
+          </select>
+        </div>
       </div>
-      <div class="pane">
-        <label for="kanaOutput">Kana</label>
-        <textarea id="kanaOutput" placeholder="Converted text appears here" spellcheck="false" readonly></textarea>
+
+      <div class="panes">
+        <div class="pane">
+          <label for="romajiInput">Romaji</label>
+          <textarea
+            id="romajiInput"
+            placeholder="e.g. konnichiwa, kyuuto, kitte"
+            spellcheck="false"
+          ></textarea>
+        </div>
+        <div class="pane">
+          <label for="kanaOutput">Kana</label>
+          <textarea
+            id="kanaOutput"
+            placeholder="Converted text appears here"
+            spellcheck="false"
+            readonly
+          ></textarea>
+        </div>
       </div>
-    </div>
 
-    <div class="actions">
-      <button id="copyBtn">Copy result</button>
-    </div>
+      <div class="actions">
+        <button id="copyBtn">Copy result</button>
+      </div>
 
-    <p id="meta" class="meta" role="status"></p>
+      <p id="meta" class="meta" role="status"></p>
 
-    <p class="note">
-      Handles doubled consonants (kitte → きって), ん before consonants or word-end, "nn"/"n'" for explicit ん before a vowel, and — in katakana — contracts repeated vowels into the long-vowel mark (kyuuto → キュート).
-      A couple of very common words (konnichiwa, konbanwa) are spelled with は rather than わ, matching real usage.
-    </p>
-    <p class="note">
-      Mandarin pinyin → hanzi isn't included: unlike kana, pinyin syllables map to many unrelated characters (ma → 妈/麻/马/骂), so it needs a dictionary and a candidate picker rather than a direct conversion.
-    </p>
-  </main>
+      <p class="note">
+        Handles doubled consonants (kitte → きって), ん before consonants or
+        word-end, "nn"/"n'" for explicit ん before a vowel, and — in katakana —
+        contracts repeated vowels into the long-vowel mark (kyuuto → キュート).
+        A couple of very common words (konnichiwa, konbanwa) are spelled with は
+        rather than わ, matching real usage.
+      </p>
+      <p class="note">
+        Mandarin pinyin → hanzi isn't included: unlike kana, pinyin syllables
+        map to many unrelated characters (ma → 妈/麻/马/骂), so it needs a
+        dictionary and a candidate picker rather than a direct conversion.
+      </p>
+    </main>
 
-  <script src="kana-data.js"></script>
-  <script src="kana.js"></script>
-  <script src="theme.js"></script>
-  <script>
-    const romajiInput = document.getElementById('romajiInput');
-    const kanaOutput = document.getElementById('kanaOutput');
-    const kanaType = document.getElementById('kanaType');
-    const copyBtn = document.getElementById('copyBtn');
-    const meta = document.getElementById('meta');
+    <script src="kana-data.js"></script>
+    <script src="kana.js"></script>
+    <script src="theme.js"></script>
+    <script>
+      const romajiInput = document.getElementById("romajiInput");
+      const kanaOutput = document.getElementById("kanaOutput");
+      const kanaType = document.getElementById("kanaType");
+      const copyBtn = document.getElementById("copyBtn");
+      const meta = document.getElementById("meta");
 
-    function convert() {
-      const text = romajiInput.value;
-      if (!text) { kanaOutput.value = ''; meta.textContent = ''; return; }
-      kanaOutput.value = romajiToKana(text, kanaType.value);
-      meta.textContent = 'Converted.';
-    }
+      function convert() {
+        const text = romajiInput.value;
+        if (!text) {
+          kanaOutput.value = "";
+          meta.textContent = "";
+          return;
+        }
+        kanaOutput.value = romajiToKana(text, kanaType.value);
+        meta.textContent = "Converted.";
+      }
 
-    romajiInput.addEventListener('input', convert);
-    kanaType.addEventListener('change', convert);
-    copyBtn.addEventListener('click', () => {
-      if (!kanaOutput.value) return;
-      navigator.clipboard.writeText(kanaOutput.value).then(() => {
-        const original = copyBtn.textContent;
-        copyBtn.textContent = 'Copied';
-        setTimeout(() => { copyBtn.textContent = original; }, 1200);
+      romajiInput.addEventListener("input", convert);
+      kanaType.addEventListener("change", convert);
+      copyBtn.addEventListener("click", () => {
+        if (!kanaOutput.value) return;
+        navigator.clipboard.writeText(kanaOutput.value).then(() => {
+          const original = copyBtn.textContent;
+          copyBtn.textContent = "Copied";
+          setTimeout(() => {
+            copyBtn.textContent = original;
+          }, 1200);
+        });
       });
-    });
-  </script>
-</body>
+    </script>
+  </body>
 </html>
