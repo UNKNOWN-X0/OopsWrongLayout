@@ -5,6 +5,8 @@
 Two small, dependency-free browser tools for a keyboard gone wrong.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![JavaScript](https://img.shields.io/badge/JavaScript-vanilla-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![HTML5](https://img.shields.io/badge/HTML5-CSS3-orange)](https://developer.mozilla.org/)
 ![No build step](https://img.shields.io/badge/build%20step-none-brightgreen)
 ![Pure JS](https://img.shields.io/badge/dependencies-zero-blue)
 
