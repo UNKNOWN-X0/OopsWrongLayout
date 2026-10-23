@@ -1,5 +1,3 @@
-<div align="center">
-
 # Layout Fix
 
 Two small, dependency-free browser tools for a keyboard gone wrong.
@@ -11,8 +9,6 @@ Two small, dependency-free browser tools for a keyboard gone wrong.
 ![Pure JS](https://img.shields.io/badge/dependencies-zero-blue)
 
 **[https://unknown-x0.github.io/OopsWrongLayout/](https://unknown-x0.github.io/OopsWrongLayout/)**
-
-</div>
 
 ---
 
