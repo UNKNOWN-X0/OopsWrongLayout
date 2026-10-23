@@ -111,3 +111,14 @@ Spot something off? Open an issue or PR.
 ## License
 
 MIT — see [LICENSE](LICENSE). Third-party font licensing is in [NOTICE.md](NOTICE.md).
+
+## Module map
+
+Already separated by responsibility; keep these boundaries:
+
+- `layouts.js`: keyboard layout data.
+- `script.js`: layout conversion and main-page interactions.
+- `kana-data.js`, `kana.js`: kana data and conversion.
+- `theme.js`: theme controls.
+- `index.html`, `romaji.html`: separate page layouts.
+- `style.css`: shared appearance.
