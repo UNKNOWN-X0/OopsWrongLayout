@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "325f0fe1-1ac6-4bf8-8c64-d8518ec696e2",
+  "status": "current",
+  "command": "deliver",
+  "type": "architecture",
+  "input": "/Users/thanate/Developer/Tools/OopsWrongLayout/.archify/architecture-oops-wrong-layout-20261024-190708/candidate.json",
+  "output": "/Users/thanate/Developer/Tools/OopsWrongLayout/.archify/architecture-oops-wrong-layout-20261024-190708/oops-wrong-layout.html",
+  "specification": {
+    "sha256": "61261228868456bb3cf77b9f971755f78a4936402e8e9e06a5a15f8944185fbe",
+    "bytes": 10180
+  },
+  "artifact": {
+    "sha256": "12cee90bcfdb3a386d90e514c1d865a14fb1921e743f246b6ac581e467be3412",
+    "bytes": 835190
+  }
+}

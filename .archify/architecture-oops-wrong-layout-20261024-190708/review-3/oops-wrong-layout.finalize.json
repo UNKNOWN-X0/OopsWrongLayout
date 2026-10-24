@@ -1,0 +1,458 @@
+{
+  "schemaVersion": 1,
+  "ok": false,
+  "command": "finalize",
+  "status": "fail",
+  "type": "architecture",
+  "quality": "showcase",
+  "startedAt": "2026-10-24T17:26:40.154Z",
+  "specification": {
+    "path": "/Users/thanate/Developer/Tools/OopsWrongLayout/.archify/architecture-oops-wrong-layout-20261024-190708/candidate.json",
+    "sha256": "61261228868456bb3cf77b9f971755f78a4936402e8e9e06a5a15f8944185fbe",
+    "bytes": 10180
+  },
+  "artifact": {
+    "path": "/Users/thanate/Developer/Tools/OopsWrongLayout/.archify/architecture-oops-wrong-layout-20261024-190708/oops-wrong-layout.html",
+    "sha256": "12cee90bcfdb3a386d90e514c1d865a14fb1921e743f246b6ac581e467be3412",
+    "bytes": 835190
+  },
+  "stages": {
+    "validate": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": null,
+      "execution": "embedded-in-deliver",
+      "command": [
+        "/Users/thanate/.nvm/versions/node/v22.23.1/bin/node",
+        "/Users/thanate/.codex/skills/archify/bin/archify.mjs",
+        "deliver",
+        "architecture",
+        "/Users/thanate/Developer/Tools/OopsWrongLayout/.archify/architecture-oops-wrong-layout-20261024-190708/candidate.json",
+        "/Users/thanate/Developer/Tools/OopsWrongLayout/.archify/architecture-oops-wrong-layout-20261024-190708/oops-wrong-layout.html",
+        "--quality",
+        "showcase",
+        "--repo-root",
+        "/Users/thanate/Developer/Tools/OopsWrongLayout",
+        "--json"
+      ],
+      "receipt": {
+        "schemaVersion": 1,
+        "ok": true,
+        "command": "validate",
+        "specification": {
+          "sha256": "61261228868456bb3cf77b9f971755f78a4936402e8e9e06a5a15f8944185fbe",
+          "bytes": 10180
+        },
+        "validation": {
+          "checksPassed": 9,
+          "checkCount": 9,
+          "compositionProfile": "showcase",
+          "compositionStatus": "pass",
+          "errors": 0,
+          "warnings": 0
+        }
+      }
+    },
+    "deliver": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": 422,
+      "command": [
+        "/Users/thanate/.nvm/versions/node/v22.23.1/bin/node",
+        "/Users/thanate/.codex/skills/archify/bin/archify.mjs",
+        "deliver",
+        "architecture",
+        "/Users/thanate/Developer/Tools/OopsWrongLayout/.archify/architecture-oops-wrong-layout-20261024-190708/candidate.json",
+        "/Users/thanate/Developer/Tools/OopsWrongLayout/.archify/architecture-oops-wrong-layout-20261024-190708/oops-wrong-layout.html",
+        "--quality",
+        "showcase",
+        "--repo-root",
+        "/Users/thanate/Developer/Tools/OopsWrongLayout",
+        "--json"
+      ],
+      "receipt": {
+        "schemaVersion": 1,
+        "receiptId": "325f0fe1-1ac6-4bf8-8c64-d8518ec696e2",
+        "ok": true,
+        "command": "deliver",
+        "type": "architecture",
+        "input": "/Users/thanate/Developer/Tools/OopsWrongLayout/.archify/architecture-oops-wrong-layout-20261024-190708/candidate.json",
+        "output": "/Users/thanate/Developer/Tools/OopsWrongLayout/.archify/architecture-oops-wrong-layout-20261024-190708/oops-wrong-layout.html",
+        "specification": {
+          "sha256": "61261228868456bb3cf77b9f971755f78a4936402e8e9e06a5a15f8944185fbe",
+          "bytes": 10180
+        },
+        "artifact": {
+          "sha256": "12cee90bcfdb3a386d90e514c1d865a14fb1921e743f246b6ac581e467be3412",
+          "bytes": 835190
+        },
+        "validation": {
+          "checksPassed": 9,
+          "checkCount": 9,
+          "compositionProfile": "showcase",
+          "compositionStatus": "pass",
+          "errors": 0,
+          "warnings": 0
+        },
+        "evidence": {
+          "verified": true,
+          "repository": "https://github.com/UNKNOWN-X0/OopsWrongLayout",
+          "revision": "861b20cf725e1512258314f4a3d99c2fe2b8b812",
+          "references": 23
+        },
+        "update": {
+          "status": "unavailable",
+          "installedVersion": null,
+          "availableVersion": null,
+          "releaseNotes": null,
+          "checkedAt": null,
+          "source": null,
+          "noticeRequired": false,
+          "noticeText": null,
+          "reason": "disabled"
+        }
+      }
+    },
+    "check": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": 124,
+      "command": [
+        "/Users/thanate/.nvm/versions/node/v22.23.1/bin/node",
+        "/Users/thanate/.codex/skills/archify/bin/archify.mjs",
+        "check",
+        "/Users/thanate/Developer/Tools/OopsWrongLayout/.archify/architecture-oops-wrong-layout-20261024-190708/oops-wrong-layout.html",
+        "--require-provenance"
+      ],
+      "receipt": {
+        "ok": true,
+        "file": "/Users/thanate/Developer/Tools/OopsWrongLayout/.archify/architecture-oops-wrong-layout-20261024-190708/oops-wrong-layout.html",
+        "artifact": {
+          "sha256": "12cee90bcfdb3a386d90e514c1d865a14fb1921e743f246b6ac581e467be3412",
+          "bytes": 835190
+        },
+        "checks": [
+          {
+            "name": "single_svg",
+            "ok": true,
+            "details": [
+              "found 1 <svg> block(s)"
+            ]
+          },
+          {
+            "name": "finite_svg",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "orthogonal_arrows",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "label_route_clearance",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "relationship_crossings",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "relationship_corridors",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "container_border_runs",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "route_rhythm",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "legend_clearance",
+            "ok": true,
+            "details": []
+          }
+        ],
+        "composition": {
+          "schemaVersion": 1,
+          "profile": "showcase",
+          "status": "pass",
+          "summary": {
+            "errors": 0,
+            "warnings": 0
+          },
+          "metrics": {
+            "properCrossings": 0,
+            "resolvedCrossovers": 1,
+            "ambiguousCorridors": 0,
+            "arrowheadCollisions": 0,
+            "containerBorderRuns": 0,
+            "labelRouteClearanceIssues": 0,
+            "labelCanvasOverflowIssues": 0,
+            "minLabelRouteClearance": 28,
+            "desktopReadabilityIssues": 0,
+            "viewportHeightIssues": 0,
+            "minProjectedNodeTextPx": 7.456258992805756,
+            "maxBends": 3,
+            "routesOverSuggestedBends": 4,
+            "maxStretch": 1.24,
+            "routesOverSuggestedStretch": 0,
+            "minSegmentPx": 24,
+            "minInteriorSegmentPx": 59,
+            "shortSegmentCount": 0,
+            "shortEndpointSegmentCount": 0,
+            "shortInteriorSegmentCount": 0,
+            "microSegmentCount": 0
+          },
+          "suggestedLimits": {
+            "bendsPerRelationship": 2,
+            "stretch": 1.35,
+            "segmentPx": 16,
+            "microSegmentPx": 8
+          },
+          "routeReview": {
+            "crossings": [
+              {
+                "left": {
+                  "id": "browser-to-kana",
+                  "from": "browser-tools",
+                  "to": "kana-converter",
+                  "label": "romaji and output type",
+                  "collectionIndex": 3,
+                  "artifactIndex": 4
+                },
+                "right": {
+                  "id": "browser-to-theme",
+                  "from": "browser-tools",
+                  "to": "theme-controller",
+                  "label": "theme selection",
+                  "collectionIndex": 5,
+                  "artifactIndex": 6
+                },
+                "point": [
+                  664.5,
+                  422
+                ],
+                "sharedNode": "browser-tools"
+              }
+            ],
+            "detours": [
+              {
+                "relationship": {
+                  "id": "host-to-browser",
+                  "from": "pages-host",
+                  "to": "browser-tools",
+                  "label": "serves static pages",
+                  "collectionIndex": 1,
+                  "artifactIndex": 2
+                },
+                "bends": 3,
+                "stretch": 1.24
+              },
+              {
+                "relationship": {
+                  "id": "kana-to-data",
+                  "from": "kana-converter",
+                  "to": "kana-table",
+                  "label": "mora lookup",
+                  "collectionIndex": 4,
+                  "artifactIndex": 5
+                },
+                "bends": 3,
+                "stretch": 1.232
+              },
+              {
+                "relationship": {
+                  "id": "theme-to-storage",
+                  "from": "theme-controller",
+                  "to": "theme-storage",
+                  "label": "read / write preference",
+                  "collectionIndex": 6,
+                  "artifactIndex": 7
+                },
+                "bends": 3,
+                "stretch": 1.232
+              },
+              {
+                "relationship": {
+                  "id": "event-to-build",
+                  "from": "main-event",
+                  "to": "github-actions",
+                  "label": "checkout and Jekyll build",
+                  "collectionIndex": 8,
+                  "artifactIndex": 9
+                },
+                "bends": 3,
+                "stretch": 1.222
+              }
+            ]
+          },
+          "leadingSpace": {
+            "measured": true,
+            "emptyTopPx": 35,
+            "emptyTopRatio": 0.047,
+            "occupiedTop": 35,
+            "viewBoxTop": 0,
+            "canvasHeight": 740,
+            "typicalNodeHeight": 94,
+            "reviewSuggested": false
+          },
+          "desktopReadability": {
+            "budgetBasis": "recognized-declared-wide",
+            "readerContract": "declared-wide-v1",
+            "availableDiagramWidth": 1346,
+            "actualBudgetPx": 1346,
+            "actualReaderWidth": 1376,
+            "desiredReaderWidth": 1383.8961038961038,
+            "viewportCap": 1376,
+            "limit": "viewport-cap",
+            "requestedTargetPx": 7.5,
+            "requestedTargetMet": false,
+            "hardFloorPx": 6,
+            "hardFloorMet": true,
+            "minimumOwner": {
+              "kind": "node",
+              "id": "layout-converter"
+            },
+            "minimumSourceTextPx": 7.7,
+            "minimumProjectedTextPx": 7.456258992805756,
+            "semanticTextCount": 31
+          },
+          "issues": []
+        },
+        "provenance": "current",
+        "deliveryReceiptId": "325f0fe1-1ac6-4bf8-8c64-d8518ec696e2"
+      }
+    },
+    "browser-check": {
+      "status": "fail",
+      "exitCode": 1,
+      "durationMs": 44,
+      "command": [
+        "/Users/thanate/.nvm/versions/node/v22.23.1/bin/node",
+        "/Users/thanate/.codex/skills/archify/bin/archify.mjs",
+        "browser-check",
+        "/Users/thanate/Developer/Tools/OopsWrongLayout/.archify/architecture-oops-wrong-layout-20261024-190708/oops-wrong-layout.html",
+        "--json",
+        "--require-provenance",
+        "--out-dir",
+        "/Users/thanate/Developer/Tools/OopsWrongLayout/.archify/architecture-oops-wrong-layout-20261024-190708/review-3"
+      ],
+      "execution": "in-process",
+      "receipt": {
+        "schemaVersion": 1,
+        "ok": false,
+        "command": "browser-check",
+        "evidenceKind": "automated-browser",
+        "status": "fail",
+        "visualReview": "not-requested",
+        "provenance": "current",
+        "deliveryReceiptId": "325f0fe1-1ac6-4bf8-8c64-d8518ec696e2",
+        "artifact": {
+          "path": "/Users/thanate/Developer/Tools/OopsWrongLayout/.archify/architecture-oops-wrong-layout-20261024-190708/oops-wrong-layout.html",
+          "sha256": "12cee90bcfdb3a386d90e514c1d865a14fb1921e743f246b6ac581e467be3412",
+          "bytes": 835190
+        },
+        "state": {
+          "detail": "read",
+          "motion": "still"
+        },
+        "chrome": {
+          "status": "available",
+          "executable": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+        },
+        "diagnostics": [
+          {
+            "code": "viewer/browser-check-runtime",
+            "severity": "error",
+            "message": "browser-check could not complete its Chrome inspection.",
+            "subject": {
+              "artifact": "/Users/thanate/Developer/Tools/OopsWrongLayout/.archify/architecture-oops-wrong-layout-20261024-190708/oops-wrong-layout.html"
+            },
+            "evidence": {
+              "reason": "Chrome DevTools read pipe failed: stream ended\nChrome process: still running.\nChrome transport: Node v22.23.1, libuv 1.51.0, darwin; pid=36092, exitCode=null, signalCode=null.\nChrome read pipe: readable=false, ended=true, destroyed=false, receivedBytes=0, messages=0, bufferedBytes=0.\nChrome write pipe: writable=true, ended=false, destroyed=false, completedWrites=1, writtenBytes=50, bufferedBytes=0."
+            },
+            "supportedFixes": [
+              "resolve the reported Chrome inspection error, then rerun browser-check"
+            ]
+          }
+        ],
+        "containment": {
+          "status": "fail",
+          "policy": "fit-or-reader-declared-readable-vertical-scroll",
+          "viewports": []
+        },
+        "themeStates": {
+          "status": "fail",
+          "viewports": []
+        },
+        "readability": {
+          "status": "fail",
+          "minimumProjectedNodeTextPx": 6,
+          "viewports": []
+        },
+        "viewerChrome": {
+          "status": "fail",
+          "viewports": []
+        },
+        "captures": {
+          "status": "not-requested",
+          "screenshots": [],
+          "contactSheet": null
+        },
+        "sidecars": {
+          "directory": "/Users/thanate/Developer/Tools/OopsWrongLayout/.archify/architecture-oops-wrong-layout-20261024-190708/review-3",
+          "receipt": "oops-wrong-layout.browser-check.json",
+          "files": []
+        },
+        "error": "Chrome DevTools read pipe failed: stream ended\nChrome process: still running.\nChrome transport: Node v22.23.1, libuv 1.51.0, darwin; pid=36092, exitCode=null, signalCode=null.\nChrome read pipe: readable=false, ended=true, destroyed=false, receivedBytes=0, messages=0, bufferedBytes=0.\nChrome write pipe: writable=true, ended=false, destroyed=false, completedWrites=1, writtenBytes=50, bufferedBytes=0."
+      }
+    }
+  },
+  "browserCheck": {
+    "requested": true,
+    "ran": false
+  },
+  "diagnostics": [
+    {
+      "code": "viewer/browser-check-runtime",
+      "severity": "error",
+      "message": "browser-check could not complete its Chrome inspection.",
+      "subject": {
+        "artifact": "/Users/thanate/Developer/Tools/OopsWrongLayout/.archify/architecture-oops-wrong-layout-20261024-190708/oops-wrong-layout.html"
+      },
+      "evidence": {
+        "reason": "Chrome DevTools read pipe failed: stream ended\nChrome process: still running.\nChrome transport: Node v22.23.1, libuv 1.51.0, darwin; pid=36092, exitCode=null, signalCode=null.\nChrome read pipe: readable=false, ended=true, destroyed=false, receivedBytes=0, messages=0, bufferedBytes=0.\nChrome write pipe: writable=true, ended=false, destroyed=false, completedWrites=1, writtenBytes=50, bufferedBytes=0."
+      },
+      "supportedFixes": [
+        "resolve the reported Chrome inspection error, then rerun browser-check"
+      ]
+    }
+  ],
+  "evidence": {
+    "receipt": "/Users/thanate/Developer/Tools/OopsWrongLayout/.archify/architecture-oops-wrong-layout-20261024-190708/review-3/oops-wrong-layout.finalize.json",
+    "summaryReceipt": "/Users/thanate/Developer/Tools/OopsWrongLayout/.archify/architecture-oops-wrong-layout-20261024-190708/review-3/oops-wrong-layout.finalize-summary.json",
+    "browserCheckReceipt": "/Users/thanate/Developer/Tools/OopsWrongLayout/.archify/architecture-oops-wrong-layout-20261024-190708/review-3/oops-wrong-layout.browser-check.json"
+  },
+  "visualReview": "not-requested",
+  "failedStage": "browser-check",
+  "finishedAt": "2026-10-24T17:26:40.878Z",
+  "durationMs": 723,
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-24T15:48:29.002Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  }
+}
