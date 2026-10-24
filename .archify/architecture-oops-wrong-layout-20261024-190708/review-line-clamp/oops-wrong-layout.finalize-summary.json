@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "ok": false,
+  "ok": true,
   "command": "finalize",
-  "status": "fail",
+  "status": "pass",
   "type": "architecture",
   "quality": "showcase",
   "specification": {
@@ -19,28 +19,12 @@
     "validate": "pass",
     "deliver": "pass",
     "check": "pass",
-    "browser-check": "fail"
+    "browser-check": "pass"
   },
-  "failedStage": "browser-check",
-  "diagnostics": [
-    {
-      "code": "viewer/browser-check-runtime",
-      "severity": "error",
-      "message": "browser-check could not complete its Chrome inspection.",
-      "subject": {
-        "artifact": "/Users/thanate/Developer/Tools/OopsWrongLayout/.archify/architecture-oops-wrong-layout-20261024-190708/oops-wrong-layout.html"
-      },
-      "evidence": {
-        "reason": "Chrome DevTools read pipe failed: stream ended\nChrome process: still running.\nChrome transport: Node v22.23.1, libuv 1.51.0, darwin; pid=8968, exitCode=null, signalCode=null.\nChrome read pipe: readable=false, ended=true, destroyed=false, receivedBytes=0, messages=0, bufferedBytes=0.\nChrome write pipe: writable=true, ended=false, destroyed=false, completedWrites=1, writtenBytes=50, bufferedBytes=0."
-      },
-      "supportedFixes": [
-        "resolve the reported Chrome inspection error, then rerun browser-check"
-      ]
-    }
-  ],
+  "diagnostics": [],
   "diagnosticSummary": {
-    "total": 1,
-    "shown": 1,
+    "total": 0,
+    "shown": 0,
     "truncated": false
   },
   "evidence": {
@@ -59,9 +43,103 @@
     "noticeText": null
   },
   "visualReview": "not-requested",
-  "durationMs": 670,
+  "durationMs": 2325,
   "browserCheck": {
     "requested": true,
-    "ran": false
+    "ran": true
+  },
+  "visualReviewRecommendation": {
+    "action": "inspect-route-readability",
+    "signals": {
+      "resolvedCrossovers": 1,
+      "routesOverSuggestedBends": 4
+    },
+    "reason": "Automated gates passed, but crossings or detours still need perceptual review before claiming visual quality.",
+    "affectedRoutes": {
+      "crossings": [
+        {
+          "left": {
+            "id": "browser-to-kana",
+            "from": "browser-tools",
+            "to": "kana-converter",
+            "label": "romaji and output type",
+            "collectionIndex": 3,
+            "artifactIndex": 4
+          },
+          "right": {
+            "id": "browser-to-theme",
+            "from": "browser-tools",
+            "to": "theme-controller",
+            "label": "theme selection",
+            "collectionIndex": 5,
+            "artifactIndex": 6
+          },
+          "point": [
+            664.5,
+            422
+          ],
+          "sharedNode": "browser-tools"
+        }
+      ],
+      "detours": [
+        {
+          "relationship": {
+            "id": "host-to-browser",
+            "from": "pages-host",
+            "to": "browser-tools",
+            "label": "serves static pages",
+            "collectionIndex": 1,
+            "artifactIndex": 2
+          },
+          "bends": 3,
+          "stretch": 1.24
+        },
+        {
+          "relationship": {
+            "id": "kana-to-data",
+            "from": "kana-converter",
+            "to": "kana-table",
+            "label": "mora lookup",
+            "collectionIndex": 4,
+            "artifactIndex": 5
+          },
+          "bends": 3,
+          "stretch": 1.232
+        },
+        {
+          "relationship": {
+            "id": "theme-to-storage",
+            "from": "theme-controller",
+            "to": "theme-storage",
+            "label": "read / write preference",
+            "collectionIndex": 6,
+            "artifactIndex": 7
+          },
+          "bends": 3,
+          "stretch": 1.232
+        },
+        {
+          "relationship": {
+            "id": "event-to-build",
+            "from": "main-event",
+            "to": "github-actions",
+            "label": "checkout and Jekyll build",
+            "collectionIndex": 8,
+            "artifactIndex": 9
+          },
+          "bends": 3,
+          "stretch": 1.222
+        }
+      ],
+      "truncated": false
+    },
+    "hints": [
+      "browser-tools → kana-converter and browser-tools → theme-controller cross next to browser-tools: move node kana-converter or theme-controller so the two reach browser-tools from different sides (for example one level with it, one directly above or below it).",
+      "pages-host → browser-tools needs 3 bends: move node pages-host or browser-tools so they share a row or column with matching centers, or sit diagonally with a clear corner.",
+      "kana-converter → kana-table needs 3 bends: move node kana-converter or kana-table so they share a row or column with matching centers, or sit diagonally with a clear corner.",
+      "theme-controller → theme-storage needs 3 bends: move node theme-controller or theme-storage so they share a row or column with matching centers, or sit diagonally with a clear corner.",
+      "main-event → github-actions needs 3 bends: move node main-event or github-actions so they share a row or column with matching centers, or sit diagonally with a clear corner."
+    ],
+    "repair": "Trace these relationships at the desktop viewport. For Architecture, use references/architecture-layout-repair.md: reflow a blocked main path or tangled connected scene, and repair an isolated defect locally only when the surrounding composition is accepted. Preserve all semantic content and user-fixed geometry. Rerun finalize once after the edit."
   }
 }
