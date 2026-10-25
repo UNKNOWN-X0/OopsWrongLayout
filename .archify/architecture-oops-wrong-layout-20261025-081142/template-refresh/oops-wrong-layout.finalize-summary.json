@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "architecture",
+  "quality": "showcase",
+  "specification": {
+    "path": "/Users/thanate/Developer/Tools/OopsWrongLayout/.archify/architecture-oops-wrong-layout-20261025-081142/candidate.json",
+    "sha256": "7482565c980c10602735e8d4d4ab0fffcbde5f51048cdb5179aee236684cbe9a",
+    "bytes": 10682
+  },
+  "artifact": {
+    "path": "/Users/thanate/Developer/Tools/OopsWrongLayout/.archify/architecture-oops-wrong-layout-20261025-081142/oops-wrong-layout.html",
+    "sha256": "046c12bdf065489f17e13b715a04f6cb1c4e3a14002fb298c6a33b08f87b09f4",
+    "bytes": 835194
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "/Users/thanate/Developer/Tools/OopsWrongLayout/.archify/architecture-oops-wrong-layout-20261025-081142/template-refresh/oops-wrong-layout.finalize.json",
+    "summaryReceipt": "/Users/thanate/Developer/Tools/OopsWrongLayout/.archify/architecture-oops-wrong-layout-20261025-081142/template-refresh/oops-wrong-layout.finalize-summary.json",
+    "browserCheckReceipt": "/Users/thanate/Developer/Tools/OopsWrongLayout/.archify/architecture-oops-wrong-layout-20261025-081142/template-refresh/oops-wrong-layout.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-24T15:48:29.002Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 3476,
+  "browserCheck": {
+    "requested": true,
+    "ran": true
+  },
+  "visualReviewRecommendation": {
+    "action": "inspect-route-readability",
+    "signals": {
+      "routesOverSuggestedBends": 1
+    },
+    "reason": "Automated gates passed, but crossings or detours still need perceptual review before claiming visual quality.",
+    "affectedRoutes": {
+      "crossings": [],
+      "detours": [
+        {
+          "relationship": {
+            "id": "browser-to-theme",
+            "from": "browser-tools",
+            "to": "theme-controller",
+            "label": "shared theme.js",
+            "collectionIndex": 5,
+            "artifactIndex": 6
+          },
+          "bends": 3,
+          "stretch": 1.198
+        }
+      ],
+      "truncated": false
+    },
+    "hints": [
+      "browser-tools → theme-controller needs 3 bends: move node browser-tools or theme-controller so they share a row or column with matching centers, or sit diagonally with a clear corner."
+    ],
+    "repair": "Trace these relationships at the desktop viewport. For Architecture, use references/architecture-layout-repair.md: reflow a blocked main path or tangled connected scene, and repair an isolated defect locally only when the surrounding composition is accepted. Preserve all semantic content and user-fixed geometry. Rerun finalize once after the edit."
+  }
+}
