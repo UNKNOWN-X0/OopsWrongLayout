@@ -1,0 +1,128 @@
+{
+  ".github/workflows/jekyll-docker.yml": {
+    "mtime": 1792756185.8932965,
+    "seen": 1792796627.811284,
+    "ast_hash": "29fe146da84567bcc68665ce404ff135",
+    "semantic_hash": "29fe146da84567bcc68665ce404ff135"
+  },
+  "kana-data.js": {
+    "mtime": 1792756186.0268085,
+    "seen": 1792796627.811287,
+    "ast_hash": "632da904e9a519558859c37bfab7fb36",
+    "semantic_hash": "632da904e9a519558859c37bfab7fb36"
+  },
+  "kana.js": {
+    "mtime": 1792756186.0498476,
+    "seen": 1792796627.811289,
+    "ast_hash": "146d43ffda9127e6eef27444a6c0816a",
+    "semantic_hash": "146d43ffda9127e6eef27444a6c0816a"
+  },
+  "layouts.js": {
+    "mtime": 1792756186.0903497,
+    "seen": 1792796627.81129,
+    "ast_hash": "33536b21bf76eacd4aeb3541550edde4",
+    "semantic_hash": "33536b21bf76eacd4aeb3541550edde4"
+  },
+  "script.js": {
+    "mtime": 1794437423.3068666,
+    "seen": 1794437559.687822,
+    "ast_hash": "105e2aa6c9c653b40b1bd4b7ebda1742",
+    "semantic_hash": ""
+  },
+  "theme.js": {
+    "mtime": 1794437423.3083608,
+    "seen": 1794437559.687823,
+    "ast_hash": "974e7a71d843d1d8442d88e05471ada7",
+    "semantic_hash": ""
+  },
+  "NOTICE.md": {
+    "mtime": 1794436713.413319,
+    "seen": 1794436721.2629719,
+    "ast_hash": "bd09255605d9f08eaa033eb1b82fbdb3",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1794436333.5259218,
+    "seen": 1794436721.262974,
+    "ast_hash": "18e25f546eba0cd1cf11a120a1a628d4",
+    "semantic_hash": ""
+  },
+  "index.html": {
+    "mtime": 1794437429.7687106,
+    "seen": 1794437559.687831,
+    "ast_hash": "00519221bd675e3948380cb6b602d810",
+    "semantic_hash": ""
+  },
+  "romaji.html": {
+    "mtime": 1794437423.3079476,
+    "seen": 1794437559.687832,
+    "ast_hash": "62cab22db48529cfdd5b5c0d6ad8df5f",
+    "semantic_hash": ""
+  },
+  "AGENTS.md": {
+    "mtime": 1793023758.056361,
+    "seen": 1794435422.233734,
+    "ast_hash": "7af4a07753df0476e10cf438ef59251d",
+    "semantic_hash": ""
+  },
+  ".impeccable/design.json": {
+    "mtime": 1794437301.2252717,
+    "seen": 1794437559.687815,
+    "ast_hash": "d364cf0d1d1c71ac3823ac2a818dc9c9",
+    "semantic_hash": ""
+  },
+  "typewriter.js": {
+    "mtime": 1794435996.4013162,
+    "seen": 1794436721.262968,
+    "ast_hash": "2eea48909e636c22c2c41746b09bffed",
+    "semantic_hash": ""
+  },
+  ".impeccable/surfaces/index-html.md": {
+    "mtime": 1794436333.5275927,
+    "seen": 1794436721.262969,
+    "ast_hash": "83a1293e514239c8430d2f9511a1713f",
+    "semantic_hash": ""
+  },
+  "DESIGN.md": {
+    "mtime": 1794436890.3348868,
+    "seen": 1794437559.6878269,
+    "ast_hash": "83d6f7f85a8912768a9b7dae2bd0d5b4",
+    "semantic_hash": ""
+  },
+  "PRODUCT.md": {
+    "mtime": 1794436333.5265462,
+    "seen": 1794436721.2629728,
+    "ast_hash": "1241c9758922ecd062b41ddecbb400cb",
+    "semantic_hash": ""
+  },
+  "custom-select.js": {
+    "mtime": 1794435938.7913456,
+    "seen": 1794436721.262961,
+    "ast_hash": "04b502496a67c277309ba3498382524b",
+    "semantic_hash": ""
+  },
+  "icons/apple-touch-icon.png": {
+    "mtime": 1794437292.6419332,
+    "seen": 1794437559.687833,
+    "ast_hash": "0264c26b43848631452a964019c87802",
+    "semantic_hash": ""
+  },
+  "icons/favicon-32.png": {
+    "mtime": 1794437292.5656497,
+    "seen": 1794437559.687834,
+    "ast_hash": "b1e7b1bca7cfe983066d1f98bc306ad6",
+    "semantic_hash": ""
+  },
+  "icons/favicon.svg": {
+    "mtime": 1794437291.576722,
+    "seen": 1794437559.687835,
+    "ast_hash": "1d7cfd374bd13099548709e6bcb6dcce",
+    "semantic_hash": ""
+  },
+  "icons/icon-512.png": {
+    "mtime": 1794437292.7230163,
+    "seen": 1794437559.687835,
+    "ast_hash": "53ba41eb8e003f15e556578a4907a499",
+    "semantic_hash": ""
+  }
+}

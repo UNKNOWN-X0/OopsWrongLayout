@@ -1,6 +1,8 @@
-# Layout Fix
+# Oops/Wrong Layout
 
-Two small, dependency-free browser tools for a keyboard gone wrong.
+<img src="icons/icon-512.png" alt="" width="96" align="right">
+
+Two small, dependency-free browser tools for a keyboard gone wrong. Everything runs in your browser: nothing you type is sent anywhere.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![JavaScript](https://img.shields.io/badge/JavaScript-vanilla-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
@@ -21,6 +23,13 @@ Two small, dependency-free browser tools for a keyboard gone wrong.
 
 Both are static pages — open them directly in a browser, or serve the folder with anything. No npm install, no bundler, no framework.
 
+Both pages share one interface:
+
+- **The mechanism on screen.** Layout Fix shows a live **key map**: each key carries the character you typed (top-left) and the one you meant (bottom-right), and the keys your text used light up, the most-used one solid. Romaji → Kana shows a **kana chart** that lights the kana in your result.
+- **Typed out, like a typewriter.** Pasted text types itself into the result while the matching keys strike; Copy confirms with a check and a small "Copied" slip.
+- **Display settings.** Choose **Mode** (System, Light, Dark) and **Paper**, the coloring: Parchment, Carbon Copy, Ledger Green, Blueprint or Kraft, each with a light and a dark version. Both choices are remembered on your device.
+- **Made for every screen.** On phones the keyboard splits into two half-boards; everything works by keyboard and with reduced motion.
+
 ---
 
 ## Layout Fix
@@ -40,14 +49,14 @@ English (US QWERTY) · Thai (Kedmanee) · German (QWERTZ) · Russian (ЙЦУКЕ
 
 ### Using it
 
-1. Paste the garbled text into the left box.
-2. Set **Typed as** and **Should have been** to the two layouts involved.
+1. Paste the garbled text into box **A**.
+2. Set **Typed as** and **Should have been** to the two layouts involved. Each picker previews the layout's home-row keys (a s d f g on that layout).
 3. The fix types itself out as you go, and the key map below lights up the keys your text used. Click **Auto-detect direction** if you're not sure which way round the layouts go.
 4. Click **Copy**.
 
 ### Adding a layout
 
-Every layout in `layouts.js` is two 47-character arrays — `unshifted` and `shifted` — lined up against the shared `SLOTS` physical-key order. Drop a new entry into the `LAYOUTS` object with your layout's characters in the same 47 positions and it shows up in both dropdowns automatically. No other code changes needed.
+Every layout in `layouts.js` is two 47-character arrays — `unshifted` and `shifted` — lined up against the shared `SLOTS` physical-key order. Drop a new entry into the `LAYOUTS` object with your layout's characters in the same 47 positions and it shows up in both pickers and on the key map automatically. [STANDARDS.md](STANDARDS.md#layout-data) lists what a new layout ships with (tests, script detection, docs).
 
 ---
 
@@ -71,31 +80,43 @@ Handles the standard Hepburn conventions: doubled consonants → small tsu, ん 
 ## Project structure
 
 ```
-index.html      Layout Fix page
-romaji.html     Romaji → Kana page
-style.css       shared styling + five papers, each in light and dark (both pages)
-theme.js        Display settings: Mode (System/Light/Dark) and Paper (Parchment, Carbon Copy, Ledger Green, Blueprint, Kraft)
-custom-select.js styled layout pickers (the hidden <select> keeps the value)
-icons/          logo mark as favicon.svg plus PNG icons
-typewriter.js   typed-out result, key strikes and Copy (both pages)
-layouts.js      keyboard layout tables + conversion engine
-script.js       Layout Fix UI wiring and key map
-kana-data.js    Hepburn romaji → kana lookup table
-kana.js         romaji → kana conversion engine
-LICENSE         MIT
-NOTICE.md       third-party font licensing
+index.html        Layout Fix page
+romaji.html       Romaji → Kana page (its page script is inline)
+style.css         shared styling: five papers, each in light and dark
+theme.js          Display settings: Mode and Paper
+custom-select.js  styled layout pickers (the hidden <select> keeps the value)
+typewriter.js     typed-out result, key strikes and Copy (both pages)
+script.js         Layout Fix wiring and the key map
+layouts.js        keyboard layout tables + conversion engine
+kana-data.js      Hepburn romaji → kana lookup table
+kana.js           romaji → kana conversion engine
+icons/            keycap logo: favicon.svg plus PNG sizes
+tests/            engine tests (Node's built-in runner)
 ```
+
+## Project documents
+
+| File | What it covers |
+| --- | --- |
+| [PRODUCT.md](PRODUCT.md) | Who the tools are for and what they must never claim |
+| [DESIGN.md](DESIGN.md) | The visual system: tokens, type, components, motion |
+| [STANDARDS.md](STANDARDS.md) | Engineering and quality rules, and the definition of done |
+| [ROADMAP.md](ROADMAP.md) | Where the project is heading next |
+| [NOTICE.md](NOTICE.md) | Third-party font and logo-glyph licences |
 
 ---
 
 ## Testing
 
-Both engines are covered by a self-checking test suite (not included in the deployed site — run these yourself with Node):
+The conversion engines have tests that run with Node 18 or newer and need no install:
 
-- **Layout Fix:** 117 tests — full-charset round-trips for every layout, known-word spot checks, randomized round-trips, and a structural scan for duplicate table entries (the one class of bug that silently breaks a round-trip).
-- **Romaji → Kana:** 342 tests — every table entry verified in isolation, ~30 hand-checked real words, 20 katakana loanwords exercising the long-vowel rule, and mechanical sokuon/ん-rule coverage across all consonants.
+```
+node --test tests/*.test.cjs
+```
 
-If you change a mapping table, re-run the equivalent checks before opening a PR.
+They check that every layout covers all 47 keys with no duplicate characters, that each layout's characters survive a round trip through every other layout, the README's known words, pass-through of off-keyboard characters, and the Hepburn spelling rules. The interface is checked in Chromium and WebKit at phone, tablet and desktop widths; [STANDARDS.md](STANDARDS.md#definition-of-done) has the full definition of done.
+
+If you change a mapping table, run the tests before opening a PR.
 
 ---
 
@@ -103,25 +124,19 @@ If you change a mapping table, re-run the equivalent checks before opening a PR.
 
 - **Rare shifted symbols** (Thai tone-mark positions, German/French AltGr characters, Spanish accent/dead-keys) were built from reference material rather than verified on physical hardware and may be slightly off. A few obscure Thai shift-row slots use placeholder Thai punctuation (๛ ๏ ๚ ๎) where the true value wasn't reliably known — this keeps every key round-trip-safe instead of risking silent data loss on a guess.
 - **Hebrew has no letter case.** Converting mixed-case Latin text through Hebrew and back loses capitalization (`Hello` and `hello` land on the same key) — this matches a real Hebrew keyboard, not a bug. The same applies to a few US shift-symbols (`:` `"` `<` `>`) whose physical keys are reassigned to Hebrew letters.
-- **A couple of very common Japanese words** (こんにちは, こんばんは) are spelled with は rather than phonetic わ; these are handled as explicit whole-word exceptions since no phonetic rule can derive them.
+- **A couple of very common Japanese words** (こんにちは, こんばんは) are spelled with は rather than phonetic わ; these are handled as explicit whole-word exceptions since no phonetic rule can derive them. They apply only when the word is the whole input: inside a sentence, `konnichiwa` is spelled phonetically (こんにちわ).
+- **The key map shows unshifted legends.** A shifted character (a capital letter, a Thai shift-row mark) lights the correct key, but the key shows its unshifted characters.
 
 Spot something off? Open an issue or PR.
+
+---
+
+## Contributing
+
+Read [STANDARDS.md](STANDARDS.md) first: it covers the module boundaries, the rules for layout and kana data, the interface rules, and the checks a change has to pass. Ideas for what to build next are in [ROADMAP.md](ROADMAP.md).
 
 ---
 
 ## License
 
 MIT — see [LICENSE](LICENSE). Third-party font licensing is in [NOTICE.md](NOTICE.md).
-
-## Module map
-
-Already separated by responsibility; keep these boundaries:
-
-- `layouts.js`: keyboard layout data.
-- `script.js`: layout conversion and main-page interactions.
-- `kana-data.js`, `kana.js`: kana data and conversion.
-- `theme.js`: display settings (mode and paper).
-- `custom-select.js`: styled layout pickers.
-- `typewriter.js`: shared result pane, typing animation and copy.
-- `index.html`, `romaji.html`: separate page layouts.
-- `style.css`: shared appearance.

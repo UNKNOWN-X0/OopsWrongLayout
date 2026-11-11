@@ -32,7 +32,7 @@ Users visit either standalone page in a browser, enter or paste text, choose set
 
 ## Evidence on Hand
 
-The working conversion engines and UI are in `layouts.js`, `script.js`, `kana-data.js`, and `kana.js`. The project README documents usage and known mapping limitations. Do not invent claims beyond those sources.
+The working conversion engines and UI are in `layouts.js`, `script.js`, `kana-data.js`, and `kana.js`; `tests/engines.test.cjs` checks the engines. The project README documents usage and known mapping limitations. Do not invent claims beyond those sources.
 
 ## Product Principles
 
