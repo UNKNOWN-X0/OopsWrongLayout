@@ -42,8 +42,8 @@ English (US QWERTY) · Thai (Kedmanee) · German (QWERTZ) · Russian (ЙЦУКЕ
 
 1. Paste the garbled text into the left box.
 2. Set **Typed as** and **Should have been** to the two layouts involved.
-3. Click **Convert** — or **Auto-detect direction** if you're not sure which way round they go.
-4. **Copy result**.
+3. The fix types itself out as you go, and the key map below lights up the keys your text used. Click **Auto-detect direction** if you're not sure which way round the layouts go.
+4. Click **Copy**.
 
 ### Adding a layout
 
@@ -73,10 +73,13 @@ Handles the standard Hepburn conventions: doubled consonants → small tsu, ん 
 ```
 index.html      Layout Fix page
 romaji.html     Romaji → Kana page
-style.css       shared styling + light/dark/system theme (both pages)
-theme.js        theme toggle logic (both pages)
+style.css       shared styling + five papers, each in light and dark (both pages)
+theme.js        Display settings: Mode (System/Light/Dark) and Paper (Parchment, Carbon Copy, Ledger Green, Blueprint, Kraft)
+custom-select.js styled layout pickers (the hidden <select> keeps the value)
+icons/          logo mark as favicon.svg plus PNG icons
+typewriter.js   typed-out result, key strikes and Copy (both pages)
 layouts.js      keyboard layout tables + conversion engine
-script.js       Layout Fix UI wiring
+script.js       Layout Fix UI wiring and key map
 kana-data.js    Hepburn romaji → kana lookup table
 kana.js         romaji → kana conversion engine
 LICENSE         MIT
@@ -117,6 +120,8 @@ Already separated by responsibility; keep these boundaries:
 - `layouts.js`: keyboard layout data.
 - `script.js`: layout conversion and main-page interactions.
 - `kana-data.js`, `kana.js`: kana data and conversion.
-- `theme.js`: theme controls.
+- `theme.js`: display settings (mode and paper).
+- `custom-select.js`: styled layout pickers.
+- `typewriter.js`: shared result pane, typing animation and copy.
 - `index.html`, `romaji.html`: separate page layouts.
 - `style.css`: shared appearance.

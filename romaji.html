@@ -4,122 +4,275 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Romaji → Kana converter</title>
+    <meta name="description" content="Type Japanese in romaji and get hiragana or katakana back." />
+    <meta name="theme-color" content="#f1e7d0" />
+    <link rel="icon" href="icons/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
     <link rel="stylesheet" href="style.css" />
     <script>
+      // Apply the saved paper and mode before first paint; theme.js wires the panel.
       (function () {
-        var saved = localStorage.getItem("theme");
-        if (saved === "light" || saved === "dark") {
-          document.documentElement.setAttribute("data-theme", saved);
-        }
+        var d = document.documentElement;
+        try {
+          var p = localStorage.getItem("paper"),
+            m = localStorage.getItem("mode"),
+            o = localStorage.getItem("theme");
+          if (!p && o) p = { carbon: "carbon", ledger: "ledger", night: "carbon" }[o];
+          if (!m && o) m = { night: "dark", dark: "dark", light: "light" }[o];
+          if (["parchment", "carbon", "ledger", "blueprint", "kraft"].indexOf(p) > -1) d.setAttribute("data-paper", p);
+          var dark = m === "dark" || (m !== "light" && matchMedia("(prefers-color-scheme: dark)").matches);
+          d.setAttribute("data-scheme", dark ? "dark" : "light");
+        } catch (e) {}
       })();
     </script>
   </head>
   <body>
-    <div class="theme-toggle" role="group" aria-label="Theme">
-      <button id="themeLight" title="Light" aria-label="Light theme">☀</button>
-      <button id="themeDark" title="Dark" aria-label="Dark theme">☾</button>
-      <button id="themeSystem" title="System" aria-label="Match system theme">
-        ◐
-      </button>
-    </div>
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2" /><path d="M5 15V6a2 2 0 0 1 2-2h9" /></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" /></symbol>
+    </svg>
 
-    <nav class="tool-nav">
-      <a href="index.html">Layout Fix</a>
-      <a href="romaji.html" class="active">Romaji → Kana</a>
-    </nav>
-
-    <header>
-      <h1>Romaji → Kana</h1>
-      <p class="sub">
-        Type Japanese in romaji, get hiragana or katakana back — sokuon, ん, and
-        long vowels handled automatically.
-      </p>
+    <header class="top">
+      <a class="brand" href="index.html" aria-label="Oops/Wrong Layout home">
+        <svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
+          <rect class="logo-base" x="1" y="2" width="30" height="29" rx="7" />
+          <rect class="logo-top" x="3" y="3" width="26" height="23.5" rx="5.5" />
+          <path class="logo-latin" d="M5.99 14.6 8.97 6.2H11.02L14.01 14.6H12.05L11.43 12.81H8.59L7.96 14.6ZM9.02 11.11H10.97L10 8.1Z" />
+          <path class="logo-script" d="M18.01 23.6V21.1Q18.01 20.16 18.39 19.65Q18.76 19.14 19.45 18.93L19.47 18.87L17.86 18.28V17.9Q17.86 17.16 18.3 16.55Q18.73 15.93 19.58 15.57Q20.42 15.2 21.64 15.2Q22.78 15.2 23.6 15.55Q24.42 15.9 24.88 16.6Q25.34 17.3 25.34 18.36V23.6H23.09V18.49Q23.09 17.75 22.69 17.37Q22.3 17 21.58 17Q20.89 17 20.54 17.29Q20.2 17.58 20.17 18L21.5 18.61L21.34 19.59Q20.8 19.62 20.53 19.98Q20.26 20.34 20.26 20.95V23.6Z" />
+        </svg>
+        <span>Oops<b>/</b>Wrong Layout</span>
+      </a>
+      <nav class="tabs" aria-label="Tools">
+        <a href="index.html">Layout Fix</a>
+        <a href="romaji.html" aria-current="page">Romaji → Kana</a>
+      </nav>
+      <div class="settings">
+        <button id="settingsBtn" class="theme-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="settingsPanel">
+          <span class="swatch" aria-hidden="true"></span>
+          <span class="theme-name">Parchment</span>
+          <svg class="icon mode-icon" viewBox="0 0 24 24" aria-hidden="true"></svg>
+          <svg class="icon chev" aria-hidden="true"><use href="#i-chevron" /></svg>
+        </button>
+        <div id="settingsPanel" class="settings-panel" role="dialog" aria-label="Display settings" hidden></div>
+      </div>
     </header>
 
     <main>
-      <div class="controls">
-        <div class="field">
-          <label for="kanaType">Output</label>
-          <select id="kanaType">
-            <option value="hiragana">Hiragana (ひらがな)</option>
-            <option value="katakana">Katakana (カタカナ)</option>
-          </select>
+      <div class="intro reveal" style="--r: 0">
+        <h1>Romaji → Kana</h1>
+        <p>Type Japanese in romaji, get hiragana or katakana back. Sokuon, ん and long vowels are handled automatically.</p>
+      </div>
+
+      <div class="controls reveal" style="--r: 1">
+        <div class="field" role="radiogroup" aria-labelledby="kanaTypeLabel">
+          <span class="label" id="kanaTypeLabel">Output</span>
+          <div class="segmented">
+            <label><input type="radio" name="kanaType" value="hiragana" checked />Hiragana ひらがな</label>
+            <label><input type="radio" name="kanaType" value="katakana" />Katakana カタカナ</label>
+          </div>
         </div>
       </div>
 
-      <div class="panes">
+      <div class="panes reveal" style="--r: 2">
         <div class="pane">
-          <label for="romajiInput">Romaji</label>
-          <textarea
-            id="romajiInput"
-            placeholder="e.g. konnichiwa, kyuuto, kitte"
-            spellcheck="false"
-          ></textarea>
+          <div class="pane-head">
+            <label for="romajiInput">A · Romaji</label>
+            <span class="count" id="inCount">0 chars</span>
+          </div>
+          <textarea id="romajiInput" class="text-in" placeholder="e.g. konnichiwa, kyuuto, kitte" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
         </div>
         <div class="pane">
-          <label for="kanaOutput">Kana</label>
-          <textarea
-            id="kanaOutput"
-            placeholder="Converted text appears here"
-            spellcheck="false"
-            readonly
-          ></textarea>
+          <div class="pane-head">
+            <span id="outLabel">B · Kana</span>
+            <span class="count" id="outCount">0 chars</span>
+          </div>
+          <div id="kanaOutput" class="text-out" lang="ja" role="textbox" aria-readonly="true" aria-multiline="true" aria-labelledby="outLabel" tabindex="0"></div>
+          <div class="copy-wrap">
+            <span class="slip" aria-hidden="true">Copied</span>
+            <button id="copyBtn" class="btn primary" disabled>
+              <svg class="icon i-copy" aria-hidden="true"><use href="#i-copy" /></svg><svg class="icon i-done" aria-hidden="true"><use href="#i-check" /></svg>Copy
+            </button>
+          </div>
         </div>
       </div>
 
-      <div class="actions">
-        <button id="copyBtn">Copy result</button>
-      </div>
+      <div class="status" id="status"></div>
+      <p class="sr-only" id="announce" role="status" aria-live="polite"></p>
 
-      <p id="meta" class="meta" role="status"></p>
+      <section class="table reveal" style="--r: 3" aria-labelledby="chartTitle">
+        <div class="table-head">
+          <h2 class="label" id="chartTitle">Kana chart · <span id="chartKind">Hiragana</span></h2>
+          <div class="legend" aria-hidden="true">
+            <span><i></i>Unused</span>
+            <span><i class="used"></i>Used</span>
+            <span><i class="most"></i>Most used</span>
+          </div>
+        </div>
+        <div class="chart" id="chart" role="img" aria-label="Kana chart showing which kana your result uses"></div>
+      </section>
 
-      <p class="note">
-        Handles doubled consonants (kitte → きって), ん before consonants or
-        word-end, "nn"/"n'" for explicit ん before a vowel, and — in katakana —
-        contracts repeated vowels into the long-vowel mark (kyuuto → キュート).
-        A couple of very common words (konnichiwa, konbanwa) are spelled with は
-        rather than わ, matching real usage.
-      </p>
-      <p class="note">
-        Mandarin pinyin → hanzi isn't included: unlike kana, pinyin syllables
-        map to many unrelated characters (ma → 妈/麻/马/骂), so it needs a
-        dictionary and a candidate picker rather than a direct conversion.
-      </p>
+      <section class="notes reveal" style="--r: 4" aria-label="About this tool">
+        <div>
+          <h2>Spelling rules</h2>
+          <p>
+            Doubled consonants become a small tsu (<code>kitte</code> → きって). ん is used before a consonant or at the end of
+            a word; type <code>nn</code> or <code>n'</code> for an explicit ん before a vowel. In katakana, repeated vowels
+            contract into the long-vowel mark (<code>kyuuto</code> → キュート). <code>konnichiwa</code> and
+            <code>konbanwa</code> are spelled with は, matching real usage.
+          </p>
+        </div>
+        <div>
+          <h2>Why no pinyin → hanzi</h2>
+          <p>
+            Unlike kana, pinyin syllables map to many unrelated characters (ma → 妈/麻/马/骂), so it needs a dictionary and a
+            candidate picker rather than a direct conversion.
+          </p>
+        </div>
+      </section>
     </main>
+
+    <footer class="credit">
+      <span>Made by Thanate Amornjiraporn (Focus)</span>
+    </footer>
 
     <script src="kana-data.js"></script>
     <script src="kana.js"></script>
     <script src="theme.js"></script>
+    <script src="typewriter.js"></script>
     <script>
       const romajiInput = document.getElementById("romajiInput");
-      const kanaOutput = document.getElementById("kanaOutput");
-      const kanaType = document.getElementById("kanaType");
       const copyBtn = document.getElementById("copyBtn");
-      const meta = document.getElementById("meta");
+      const chart = document.getElementById("chart");
+      const status = document.getElementById("status");
+      const announce = document.getElementById("announce");
+      const kanaType = () => document.querySelector('input[name="kanaType"]:checked').value;
 
-      function convert() {
-        const text = romajiInput.value;
-        if (!text) {
-          kanaOutput.value = "";
-          meta.textContent = "";
-          return;
+      // Gojūon chart: one column per consonant group, one row per vowel.
+      const GROUPS = [
+        ["", ["a", "i", "u", "e", "o"]],
+        ["k", ["ka", "ki", "ku", "ke", "ko"]],
+        ["s", ["sa", "shi", "su", "se", "so"]],
+        ["t", ["ta", "chi", "tsu", "te", "to"]],
+        ["n", ["na", "ni", "nu", "ne", "no"]],
+        ["h", ["ha", "hi", "fu", "he", "ho"]],
+        ["m", ["ma", "mi", "mu", "me", "mo"]],
+        ["y", ["ya", null, "yu", null, "yo"]],
+        ["r", ["ra", "ri", "ru", "re", "ro"]],
+        ["w", ["wa", null, null, null, "wo"]],
+        ["g", ["ga", "gi", "gu", "ge", "go"]],
+        ["z", ["za", "ji", "zu", "ze", "zo"]],
+        ["d", ["da", null, null, "de", "do"]],
+        ["b", ["ba", "bi", "bu", "be", "bo"]],
+        ["p", ["pa", "pi", "pu", "pe", "po"]],
+        ["ん", ["n", null, null, null, null]],
+      ];
+      const cells = [];
+
+      function renderChart() {
+        const key = kanaType() === "katakana" ? "kata" : "hira";
+        const nodes = [document.createElement("span")];
+        for (const [g] of GROUPS) {
+          const ax = document.createElement("span");
+          ax.className = g === "ん" ? "axis kana" : "axis";
+          ax.textContent = g === "ん" ? (key === "kata" ? "ン" : "ん") : g || "–";
+          nodes.push(ax);
         }
-        kanaOutput.value = romajiToKana(text, kanaType.value);
-        meta.textContent = "Converted.";
+        cells.length = 0;
+        ["a", "i", "u", "e", "o"].forEach((vowel, row) => {
+          const ax = document.createElement("span");
+          ax.className = "axis";
+          ax.textContent = vowel;
+          nodes.push(ax);
+          for (const [, list] of GROUPS) {
+            const romaji = list[row];
+            const kana = romaji === "n" ? (key === "kata" ? "ン" : "ん") : romaji && KANA_TABLE[romaji]?.[key];
+            const cell = document.createElement("span");
+            if (!kana) {
+              cell.className = "gap";
+            } else {
+              cell.className = "cap";
+              cell.innerHTML = '<span class="from"></span><span class="to"></span>';
+              cell.querySelector(".from").textContent = romaji;
+              cell.querySelector(".to").textContent = kana;
+              cells.push({ cell, kana });
+            }
+            nodes.push(cell);
+          }
+        });
+        chart.replaceChildren(...nodes);
+        document.getElementById("chartKind").textContent = key === "kata" ? "Katakana" : "Hiragana";
       }
 
-      romajiInput.addEventListener("input", convert);
-      kanaType.addEventListener("change", convert);
-      copyBtn.addEventListener("click", () => {
-        if (!kanaOutput.value) return;
-        navigator.clipboard.writeText(kanaOutput.value).then(() => {
-          const original = copyBtn.textContent;
-          copyBtn.textContent = "Copied";
-          setTimeout(() => {
-            copyBtn.textContent = original;
-          }, 1200);
-        });
+      // Chart cells struck as each kana is typed out.
+      const byKana = () => new Map(cells.map((c) => [c.kana, c.cell]));
+      let lookup = new Map();
+      function strike(ch) {
+        const cell = lookup.get(ch);
+        if (!cell) return;
+        cell.classList.remove("strike");
+        void cell.offsetWidth;
+        cell.classList.add("strike");
+      }
+
+      let outChars = [];
+      const writer = createTypewriter(document.getElementById("kanaOutput"), {
+        placeholder: "Kana appears here as you type.",
+        onStroke: (start, end) => {
+          for (let i = start; i < end; i++) strike(outChars[i]);
+        },
       });
+
+      function updateHeat(text) {
+        const counts = new Map();
+        for (const ch of text) counts.set(ch, (counts.get(ch) || 0) + 1);
+        const max = Math.max(0, ...cells.map((c) => counts.get(c.kana) || 0));
+        for (const { cell, kana } of cells) {
+          const n = counts.get(kana) || 0;
+          const heat = n === 0 ? 0 : n === max && max > 1 ? 1 : 0.12 + 0.28 * (n / max);
+          cell.style.setProperty("--heat", heat);
+          cell.classList.toggle("used", n > 0);
+          cell.classList.toggle("hot", heat === 1);
+        }
+      }
+
+      const plural = (n, w) => `${n} ${w}${n === 1 ? "" : "s"}`;
+
+      function convert({ animate = false } = {}) {
+        const text = romajiInput.value;
+        const result = text ? romajiToKana(text, kanaType()) : "";
+        outChars = Array.from(result);
+        lookup = byKana();
+        writer.set(result, { animate });
+        document.getElementById("inCount").textContent = plural(Array.from(text).length, "char");
+        document.getElementById("outCount").textContent = plural(outChars.length, "char");
+        copyBtn.disabled = !result;
+        updateHeat(result);
+        if (!text) {
+          status.innerHTML = '<span class="message">Type or paste romaji in box A.</span>';
+        } else {
+          const leftover = (result.match(/[a-z]/gi) || []).length;
+          status.innerHTML =
+            `<span class="lead">Kana <b>${outChars.length}</b></span>` +
+            `<span class="${leftover ? "warn" : ""}">Left as Latin <b>${leftover}</b></span>` +
+            '<span class="rule">Hepburn spelling rules</span>';
+        }
+      }
+
+      romajiInput.addEventListener("input", (e) => {
+        const single = e.inputType === "insertText" && e.data && e.data.length === 1;
+        convert({ animate: !single && !String(e.inputType).startsWith("delete") });
+      });
+      for (const radio of document.querySelectorAll('input[name="kanaType"]')) {
+        radio.addEventListener("change", () => {
+          renderChart();
+          convert({ animate: true });
+        });
+      }
+      wireCopy(copyBtn, () => writer.value, announce);
+      renderChart();
+      convert();
     </script>
   </body>
 </html>

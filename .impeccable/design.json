@@ -1,0 +1,2324 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-11T22:37:54.529Z",
+  "title": "Design System: Oops/Wrong Layout",
+  "extensions": {
+    "papers": [
+      {
+        "name": "parchment",
+        "label": "Parchment",
+        "note": "Warm sheet, ink blue",
+        "default": true,
+        "modes": {
+          "light": "parchment-* (Parchment light uses the legacy names sepia-ink, faded-sepia, ink-blue, burnt-sienna)",
+          "dark": "parchment-dark-*"
+        }
+      },
+      {
+        "name": "carbon",
+        "label": "Carbon Copy",
+        "note": "Cool white, indigo carbon",
+        "default": false,
+        "modes": {
+          "light": "carbon-*",
+          "dark": "carbon-dark-*"
+        }
+      },
+      {
+        "name": "ledger",
+        "label": "Ledger Green",
+        "note": "Ruled green, jade ink",
+        "default": false,
+        "modes": {
+          "light": "ledger-*",
+          "dark": "ledger-dark-*"
+        }
+      },
+      {
+        "name": "blueprint",
+        "label": "Blueprint",
+        "note": "Drafting blue, pencil yellow",
+        "default": false,
+        "modes": {
+          "light": "blueprint-*",
+          "dark": "blueprint-dark-*"
+        }
+      },
+      {
+        "name": "kraft",
+        "label": "Kraft",
+        "note": "Brown wrap, stamp teal",
+        "default": false,
+        "modes": {
+          "light": "kraft-*",
+          "dark": "kraft-dark-*"
+        }
+      }
+    ],
+    "modes": [
+      {
+        "name": "system",
+        "label": "System",
+        "default": true,
+        "note": "Follows prefers-color-scheme; resolves to data-scheme light or dark."
+      },
+      {
+        "name": "light",
+        "label": "Light"
+      },
+      {
+        "name": "dark",
+        "label": "Dark"
+      }
+    ],
+    "themeSelection": {
+      "attributes": "data-paper (parchment|carbon|ledger|blueprint|kraft) and data-scheme (light|dark) on <html>",
+      "fallback": "No attributes (scripts blocked): Parchment light",
+      "storage": "localStorage 'paper' (absent = parchment) and 'mode' (absent = system); legacy 'theme' migrated once and removed (night → carbon + dark)",
+      "prePaint": "Inline head script applies both before first paint; theme.js wires the Display settings panel, follows the OS in System mode and syncs across tabs",
+      "heatInk": "Blueprint dark sets --heat-ink: #eaf2ff so used keys tint toward its pale ink, not the yellow accent"
+    },
+    "cssVariables": {
+      "--bg": "ground",
+      "--surface": "sheet",
+      "--key": "keycap",
+      "--ink": "ink",
+      "--muted": "muted ink",
+      "--line": "rule",
+      "--line-strong": "strong rule",
+      "--accent": "accent",
+      "--accent-ink": "ink on accent",
+      "--warn": "warning ink",
+      "--shadow": "ink as RGB triple for rgb(var(--shadow) / a); 0 0 0 in every dark mode",
+      "--accent-soft": "color-mix(in oklab, var(--heat-ink, var(--accent)) 14%, var(--key))",
+      "--ui": "Public Sans stack",
+      "--mono": "Martian Mono stack",
+      "--script": "Noto Sans Thai, Noto Sans JP, Noto Sans Hebrew",
+      "--gutter": "clamp(16px, 4vw, 56px)",
+      "--ease-out": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "--cap": "keycap width, from container width",
+      "--heat": "0..1 usage heat per cap",
+      "--heat-ink": "optional; heat tint ink, defaults to --accent (set only by Blueprint dark)"
+    },
+    "colorMeta": {
+      "parchment-ground": {
+        "role": "neutral",
+        "displayName": "Parchment Ground",
+        "canonical": "#f1e7d0",
+        "paper": "Parchment",
+        "mode": "light",
+        "cssVariable": "--bg",
+        "tonalRamp": [
+          "#0d0b06",
+          "#29251c",
+          "#474134",
+          "#68604e",
+          "#8a826f",
+          "#aba495",
+          "#cec9bd",
+          "#f1eee7"
+        ]
+      },
+      "parchment-sheet": {
+        "role": "neutral",
+        "displayName": "Parchment Sheet",
+        "canonical": "#fbf6ea",
+        "paper": "Parchment",
+        "mode": "light",
+        "cssVariable": "--surface",
+        "tonalRamp": [
+          "#0c0b09",
+          "#272520",
+          "#45423b",
+          "#656158",
+          "#868278",
+          "#a8a59d",
+          "#cbc9c3",
+          "#f0eeea"
+        ]
+      },
+      "parchment-keycap": {
+        "role": "neutral",
+        "displayName": "Parchment Keycap",
+        "canonical": "#f8f1e0",
+        "paper": "Parchment",
+        "mode": "light",
+        "cssVariable": "--key",
+        "tonalRamp": [
+          "#0c0b08",
+          "#27251e",
+          "#464238",
+          "#666154",
+          "#888274",
+          "#a9a599",
+          "#ccc9c0",
+          "#f1eee9"
+        ]
+      },
+      "sepia-ink": {
+        "role": "neutral",
+        "displayName": "Sepia Ink",
+        "canonical": "#2a2118",
+        "paper": "Parchment",
+        "mode": "light",
+        "cssVariable": "--ink",
+        "tonalRamp": [
+          "#0d0b08",
+          "#29241f",
+          "#48413a",
+          "#695f56",
+          "#8a8076",
+          "#aca39b",
+          "#cec8c2",
+          "#f2eeea"
+        ]
+      },
+      "faded-sepia": {
+        "role": "neutral",
+        "displayName": "Faded Sepia",
+        "canonical": "#645641",
+        "paper": "Parchment",
+        "mode": "light",
+        "cssVariable": "--muted",
+        "tonalRamp": [
+          "#0e0b06",
+          "#2a241a",
+          "#4a4032",
+          "#6c5f4c",
+          "#8e806c",
+          "#aea393",
+          "#d0c8bb",
+          "#f3eee6"
+        ]
+      },
+      "parchment-rule": {
+        "role": "neutral",
+        "displayName": "Parchment Rule",
+        "canonical": "#e0d2b3",
+        "paper": "Parchment",
+        "mode": "light",
+        "cssVariable": "--line",
+        "tonalRamp": [
+          "#0e0b05",
+          "#2a2418",
+          "#49412f",
+          "#6b6047",
+          "#8d8167",
+          "#aea48f",
+          "#d0c8b9",
+          "#f3eee4"
+        ]
+      },
+      "parchment-rule-strong": {
+        "role": "neutral",
+        "displayName": "Parchment Rule Strong",
+        "canonical": "#2a2118",
+        "paper": "Parchment",
+        "mode": "light",
+        "cssVariable": "--line-strong",
+        "tonalRamp": [
+          "#0d0b08",
+          "#29241f",
+          "#48413a",
+          "#695f56",
+          "#8a8076",
+          "#aca39b",
+          "#cec8c2",
+          "#f2eeea"
+        ]
+      },
+      "ink-blue": {
+        "role": "primary",
+        "displayName": "Ink-Blue",
+        "canonical": "#2f4f9a",
+        "paper": "Parchment",
+        "mode": "light",
+        "cssVariable": "--accent",
+        "tonalRamp": [
+          "#040a1d",
+          "#142345",
+          "#293f72",
+          "#3f5ea3",
+          "#5f80c8",
+          "#88a4df",
+          "#b3c9f6",
+          "#e7effe"
+        ]
+      },
+      "ink-blue-on": {
+        "role": "on-primary",
+        "displayName": "Ink-Blue On",
+        "canonical": "#ffffff",
+        "paper": "Parchment",
+        "mode": "light",
+        "cssVariable": "--accent-ink",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "burnt-sienna": {
+        "role": "tertiary",
+        "displayName": "Burnt Sienna",
+        "canonical": "#8f4310",
+        "paper": "Parchment",
+        "mode": "light",
+        "cssVariable": "--warn",
+        "tonalRamp": [
+          "#180600",
+          "#3c1a06",
+          "#653213",
+          "#914c23",
+          "#b66d45",
+          "#d19576",
+          "#ecbea6",
+          "#ffeadf"
+        ]
+      },
+      "parchment-dark-ground": {
+        "role": "neutral",
+        "displayName": "Parchment Dark Ground",
+        "canonical": "#1b1611",
+        "paper": "Parchment",
+        "mode": "dark",
+        "cssVariable": "--bg",
+        "tonalRamp": [
+          "#0c0b09",
+          "#272422",
+          "#45413d",
+          "#66605b",
+          "#87817b",
+          "#a9a49f",
+          "#ccc8c5",
+          "#f0eeeb"
+        ]
+      },
+      "parchment-dark-sheet": {
+        "role": "neutral",
+        "displayName": "Parchment Dark Sheet",
+        "canonical": "#231d16",
+        "paper": "Parchment",
+        "mode": "dark",
+        "cssVariable": "--surface",
+        "tonalRamp": [
+          "#0d0b09",
+          "#282421",
+          "#46413c",
+          "#676059",
+          "#888179",
+          "#aaa49d",
+          "#cdc8c3",
+          "#f1eeeb"
+        ]
+      },
+      "parchment-dark-keycap": {
+        "role": "neutral",
+        "displayName": "Parchment Dark Keycap",
+        "canonical": "#2b241b",
+        "paper": "Parchment",
+        "mode": "dark",
+        "cssVariable": "--key",
+        "tonalRamp": [
+          "#0d0b08",
+          "#282420",
+          "#46413a",
+          "#676057",
+          "#898177",
+          "#aaa49c",
+          "#cdc8c2",
+          "#f1eeea"
+        ]
+      },
+      "parchment-dark-ink": {
+        "role": "neutral",
+        "displayName": "Parchment Dark Ink",
+        "canonical": "#efe4cc",
+        "paper": "Parchment",
+        "mode": "dark",
+        "cssVariable": "--ink",
+        "tonalRamp": [
+          "#0d0b06",
+          "#29251b",
+          "#484133",
+          "#69604d",
+          "#8a816e",
+          "#aca494",
+          "#cec9bc",
+          "#f2eee6"
+        ]
+      },
+      "parchment-dark-muted": {
+        "role": "neutral",
+        "displayName": "Parchment Dark Muted",
+        "canonical": "#b4a68b",
+        "paper": "Parchment",
+        "mode": "dark",
+        "cssVariable": "--muted",
+        "tonalRamp": [
+          "#0e0b05",
+          "#2a2419",
+          "#494130",
+          "#6b6049",
+          "#8d8169",
+          "#aea491",
+          "#d0c8ba",
+          "#f3eee4"
+        ]
+      },
+      "parchment-dark-rule": {
+        "role": "neutral",
+        "displayName": "Parchment Dark Rule",
+        "canonical": "#3a3127",
+        "paper": "Parchment",
+        "mode": "dark",
+        "cssVariable": "--line",
+        "tonalRamp": [
+          "#0d0b08",
+          "#29241f",
+          "#474139",
+          "#696056",
+          "#8a8176",
+          "#aba49b",
+          "#cec8c1",
+          "#f2eee9"
+        ]
+      },
+      "parchment-dark-rule-strong": {
+        "role": "neutral",
+        "displayName": "Parchment Dark Rule Strong",
+        "canonical": "#5c4e3c",
+        "paper": "Parchment",
+        "mode": "dark",
+        "cssVariable": "--line-strong",
+        "tonalRamp": [
+          "#0e0a06",
+          "#2a241c",
+          "#4a4034",
+          "#6c5f4e",
+          "#8e806f",
+          "#aea395",
+          "#d0c8bd",
+          "#f3ede6"
+        ]
+      },
+      "parchment-dark-ink-blue": {
+        "role": "primary",
+        "displayName": "Parchment Dark Ink Blue",
+        "canonical": "#93abee",
+        "paper": "Parchment",
+        "mode": "dark",
+        "cssVariable": "--accent",
+        "tonalRamp": [
+          "#060a19",
+          "#1a233f",
+          "#324068",
+          "#4c5e95",
+          "#6c80b9",
+          "#92a4d3",
+          "#bbc9ed",
+          "#e8eefe"
+        ]
+      },
+      "parchment-dark-ink-blue-on": {
+        "role": "on-primary",
+        "displayName": "Parchment Dark Ink Blue On",
+        "canonical": "#1b1611",
+        "paper": "Parchment",
+        "mode": "dark",
+        "cssVariable": "--accent-ink",
+        "tonalRamp": [
+          "#0c0b09",
+          "#272422",
+          "#45413d",
+          "#66605b",
+          "#87817b",
+          "#a9a49f",
+          "#ccc8c5",
+          "#f0eeeb"
+        ]
+      },
+      "parchment-dark-amber": {
+        "role": "tertiary",
+        "displayName": "Parchment Dark Amber",
+        "canonical": "#f0a35e",
+        "paper": "Parchment",
+        "mode": "dark",
+        "cssVariable": "--warn",
+        "tonalRamp": [
+          "#160700",
+          "#3a1d00",
+          "#623501",
+          "#8e4f03",
+          "#b37133",
+          "#ce986a",
+          "#e9c09e",
+          "#ffeada"
+        ]
+      },
+      "carbon-ground": {
+        "role": "neutral",
+        "displayName": "Carbon Ground",
+        "canonical": "#eceef3",
+        "paper": "Carbon Copy",
+        "mode": "light",
+        "cssVariable": "--bg",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242527",
+          "#414245",
+          "#606165",
+          "#818286",
+          "#a4a5a8",
+          "#c8c9cb",
+          "#eeeef0"
+        ]
+      },
+      "carbon-sheet": {
+        "role": "neutral",
+        "displayName": "Carbon Sheet",
+        "canonical": "#ffffff",
+        "paper": "Carbon Copy",
+        "mode": "light",
+        "cssVariable": "--surface",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "carbon-keycap": {
+        "role": "neutral",
+        "displayName": "Carbon Keycap",
+        "canonical": "#f7f8fb",
+        "paper": "Carbon Copy",
+        "mode": "light",
+        "cssVariable": "--key",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#252526",
+          "#414244",
+          "#606163",
+          "#818285",
+          "#a4a5a7",
+          "#c8c9ca",
+          "#eeeeef"
+        ]
+      },
+      "carbon-ink": {
+        "role": "neutral",
+        "displayName": "Carbon Ink",
+        "canonical": "#161a2b",
+        "paper": "Carbon Copy",
+        "mode": "light",
+        "cssVariable": "--ink",
+        "tonalRamp": [
+          "#0a0b10",
+          "#22252e",
+          "#3e414f",
+          "#5b6073",
+          "#7c8195",
+          "#a0a4b5",
+          "#c5c9d5",
+          "#eceef6"
+        ]
+      },
+      "carbon-muted": {
+        "role": "neutral",
+        "displayName": "Carbon Muted",
+        "canonical": "#565c73",
+        "paper": "Carbon Copy",
+        "mode": "light",
+        "cssVariable": "--muted",
+        "tonalRamp": [
+          "#090b11",
+          "#22252f",
+          "#3d4151",
+          "#5b6075",
+          "#7b8197",
+          "#9fa4b7",
+          "#c5c9d6",
+          "#ebeef7"
+        ]
+      },
+      "carbon-rule": {
+        "role": "neutral",
+        "displayName": "Carbon Rule",
+        "canonical": "#d9dce7",
+        "paper": "Carbon Copy",
+        "mode": "light",
+        "cssVariable": "--line",
+        "tonalRamp": [
+          "#0a0b0d",
+          "#242529",
+          "#404248",
+          "#5f6169",
+          "#7f828b",
+          "#a3a5ac",
+          "#c7c9ce",
+          "#edeef2"
+        ]
+      },
+      "carbon-rule-strong": {
+        "role": "neutral",
+        "displayName": "Carbon Rule Strong",
+        "canonical": "#161a2b",
+        "paper": "Carbon Copy",
+        "mode": "light",
+        "cssVariable": "--line-strong",
+        "tonalRamp": [
+          "#0a0b10",
+          "#22252e",
+          "#3e414f",
+          "#5b6073",
+          "#7c8195",
+          "#a0a4b5",
+          "#c5c9d5",
+          "#eceef6"
+        ]
+      },
+      "carbon-violet": {
+        "role": "primary",
+        "displayName": "Carbon Violet",
+        "canonical": "#3d3bd6",
+        "paper": "Carbon Copy",
+        "mode": "light",
+        "cssVariable": "--accent",
+        "tonalRamp": [
+          "#05042a",
+          "#17185d",
+          "#2c3096",
+          "#434ad3",
+          "#606ffb",
+          "#899dff",
+          "#b8c6ff",
+          "#eaeefe"
+        ]
+      },
+      "carbon-violet-on": {
+        "role": "on-primary",
+        "displayName": "Carbon Violet On",
+        "canonical": "#ffffff",
+        "paper": "Carbon Copy",
+        "mode": "light",
+        "cssVariable": "--accent-ink",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "carbon-warn": {
+        "role": "tertiary",
+        "displayName": "Carbon Warn",
+        "canonical": "#8f4310",
+        "paper": "Carbon Copy",
+        "mode": "light",
+        "cssVariable": "--warn",
+        "tonalRamp": [
+          "#180600",
+          "#3c1a06",
+          "#653213",
+          "#914c23",
+          "#b66d45",
+          "#d19576",
+          "#ecbea6",
+          "#ffeadf"
+        ]
+      },
+      "carbon-dark-ground": {
+        "role": "neutral",
+        "displayName": "Carbon Dark Ground",
+        "canonical": "#111318",
+        "paper": "Carbon Copy",
+        "mode": "dark",
+        "cssVariable": "--bg",
+        "tonalRamp": [
+          "#0a0b0d",
+          "#242528",
+          "#404246",
+          "#5f6167",
+          "#808288",
+          "#a3a5aa",
+          "#c7c9cd",
+          "#edeef1"
+        ]
+      },
+      "carbon-dark-sheet": {
+        "role": "neutral",
+        "displayName": "Carbon Dark Sheet",
+        "canonical": "#181b22",
+        "paper": "Carbon Copy",
+        "mode": "dark",
+        "cssVariable": "--surface",
+        "tonalRamp": [
+          "#0a0b0d",
+          "#232529",
+          "#3f4248",
+          "#5e6169",
+          "#7f828a",
+          "#a2a5ac",
+          "#c7c9ce",
+          "#edeef2"
+        ]
+      },
+      "carbon-dark-keycap": {
+        "role": "neutral",
+        "displayName": "Carbon Dark Keycap",
+        "canonical": "#1f232b",
+        "paper": "Carbon Copy",
+        "mode": "dark",
+        "cssVariable": "--key",
+        "tonalRamp": [
+          "#0a0b0d",
+          "#232529",
+          "#3f4248",
+          "#5d616a",
+          "#7e828b",
+          "#a1a5ad",
+          "#c6c9cf",
+          "#edeef2"
+        ]
+      },
+      "carbon-dark-ink": {
+        "role": "neutral",
+        "displayName": "Carbon Dark Ink",
+        "canonical": "#e8eaf0",
+        "paper": "Carbon Copy",
+        "mode": "dark",
+        "cssVariable": "--ink",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242527",
+          "#414245",
+          "#5f6166",
+          "#808287",
+          "#a3a5a9",
+          "#c8c9cc",
+          "#eeeef0"
+        ]
+      },
+      "carbon-dark-muted": {
+        "role": "neutral",
+        "displayName": "Carbon Dark Muted",
+        "canonical": "#a0a6b6",
+        "paper": "Carbon Copy",
+        "mode": "dark",
+        "cssVariable": "--muted",
+        "tonalRamp": [
+          "#0a0b0f",
+          "#22252b",
+          "#3e424b",
+          "#5c616e",
+          "#7d8290",
+          "#a0a5b0",
+          "#c6c9d2",
+          "#eceef4"
+        ]
+      },
+      "carbon-dark-rule": {
+        "role": "neutral",
+        "displayName": "Carbon Dark Rule",
+        "canonical": "#2c313c",
+        "paper": "Carbon Copy",
+        "mode": "dark",
+        "cssVariable": "--line",
+        "tonalRamp": [
+          "#0a0b0e",
+          "#22252b",
+          "#3e424a",
+          "#5c616c",
+          "#7d828e",
+          "#a1a5af",
+          "#c6c9d1",
+          "#eceef3"
+        ]
+      },
+      "carbon-dark-rule-strong": {
+        "role": "neutral",
+        "displayName": "Carbon Dark Rule Strong",
+        "canonical": "#4a5263",
+        "paper": "Carbon Copy",
+        "mode": "dark",
+        "cssVariable": "--line-strong",
+        "tonalRamp": [
+          "#090b0f",
+          "#21252d",
+          "#3c424e",
+          "#5a6171",
+          "#7a8293",
+          "#9fa5b3",
+          "#c4c9d4",
+          "#ebeef5"
+        ]
+      },
+      "carbon-dark-violet": {
+        "role": "primary",
+        "displayName": "Carbon Dark Violet",
+        "canonical": "#a3a1ff",
+        "paper": "Carbon Copy",
+        "mode": "dark",
+        "cssVariable": "--accent",
+        "tonalRamp": [
+          "#09081d",
+          "#211f45",
+          "#3d3972",
+          "#5a55a3",
+          "#7a77c8",
+          "#9d9ddf",
+          "#c3c4f6",
+          "#ecedfe"
+        ]
+      },
+      "carbon-dark-violet-on": {
+        "role": "on-primary",
+        "displayName": "Carbon Dark Violet On",
+        "canonical": "#111318",
+        "paper": "Carbon Copy",
+        "mode": "dark",
+        "cssVariable": "--accent-ink",
+        "tonalRamp": [
+          "#0a0b0d",
+          "#242528",
+          "#404246",
+          "#5f6167",
+          "#808288",
+          "#a3a5aa",
+          "#c7c9cd",
+          "#edeef1"
+        ]
+      },
+      "carbon-dark-amber": {
+        "role": "tertiary",
+        "displayName": "Carbon Dark Amber",
+        "canonical": "#f0a35e",
+        "paper": "Carbon Copy",
+        "mode": "dark",
+        "cssVariable": "--warn",
+        "tonalRamp": [
+          "#160700",
+          "#3a1d00",
+          "#623501",
+          "#8e4f03",
+          "#b37133",
+          "#ce986a",
+          "#e9c09e",
+          "#ffeada"
+        ]
+      },
+      "ledger-ground": {
+        "role": "neutral",
+        "displayName": "Ledger Ground",
+        "canonical": "#e8eeea",
+        "paper": "Ledger Green",
+        "mode": "light",
+        "cssVariable": "--bg",
+        "tonalRamp": [
+          "#0a0b0b",
+          "#232624",
+          "#404341",
+          "#5e635f",
+          "#7f8480",
+          "#a2a6a3",
+          "#c7cac8",
+          "#edefee"
+        ]
+      },
+      "ledger-sheet": {
+        "role": "neutral",
+        "displayName": "Ledger Sheet",
+        "canonical": "#fbfdfc",
+        "paper": "Ledger Green",
+        "mode": "light",
+        "cssVariable": "--surface",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242525",
+          "#414242",
+          "#606261",
+          "#818382",
+          "#a4a5a5",
+          "#c8c9c9",
+          "#eeeeee"
+        ]
+      },
+      "ledger-keycap": {
+        "role": "neutral",
+        "displayName": "Ledger Keycap",
+        "canonical": "#f3f7f5",
+        "paper": "Ledger Green",
+        "mode": "light",
+        "cssVariable": "--key",
+        "tonalRamp": [
+          "#0a0b0b",
+          "#242525",
+          "#404341",
+          "#5f6260",
+          "#808382",
+          "#a3a6a4",
+          "#c8cac9",
+          "#edefee"
+        ]
+      },
+      "ledger-ink": {
+        "role": "neutral",
+        "displayName": "Ledger Ink",
+        "canonical": "#0f2a22",
+        "paper": "Ledger Green",
+        "mode": "light",
+        "cssVariable": "--ink",
+        "tonalRamp": [
+          "#060d0a",
+          "#1c2824",
+          "#344740",
+          "#4e685f",
+          "#6f8980",
+          "#95aba3",
+          "#bdcdc7",
+          "#e7f1ed"
+        ]
+      },
+      "ledger-muted": {
+        "role": "neutral",
+        "displayName": "Ledger Muted",
+        "canonical": "#4b6057",
+        "paper": "Ledger Green",
+        "mode": "light",
+        "cssVariable": "--muted",
+        "tonalRamp": [
+          "#070d0a",
+          "#1e2823",
+          "#384640",
+          "#53665e",
+          "#74887f",
+          "#99a9a2",
+          "#c0ccc7",
+          "#e9f1ed"
+        ]
+      },
+      "ledger-rule": {
+        "role": "neutral",
+        "displayName": "Ledger Rule",
+        "canonical": "#d2ddd7",
+        "paper": "Ledger Green",
+        "mode": "light",
+        "cssVariable": "--line",
+        "tonalRamp": [
+          "#090c0b",
+          "#222624",
+          "#3d4440",
+          "#5b645f",
+          "#7c8580",
+          "#a0a7a3",
+          "#c5cbc8",
+          "#ecefed"
+        ]
+      },
+      "ledger-rule-strong": {
+        "role": "neutral",
+        "displayName": "Ledger Rule Strong",
+        "canonical": "#0f2a22",
+        "paper": "Ledger Green",
+        "mode": "light",
+        "cssVariable": "--line-strong",
+        "tonalRamp": [
+          "#060d0a",
+          "#1c2824",
+          "#344740",
+          "#4e685f",
+          "#6f8980",
+          "#95aba3",
+          "#bdcdc7",
+          "#e7f1ed"
+        ]
+      },
+      "ledger-green": {
+        "role": "primary",
+        "displayName": "Ledger Green",
+        "canonical": "#0b7258",
+        "paper": "Ledger Green",
+        "mode": "light",
+        "cssVariable": "--accent",
+        "tonalRamp": [
+          "#000f09",
+          "#032d21",
+          "#104d3c",
+          "#1f7159",
+          "#46937a",
+          "#79b39e",
+          "#aad4c4",
+          "#dbf6eb"
+        ]
+      },
+      "ledger-green-on": {
+        "role": "on-primary",
+        "displayName": "Ledger Green On",
+        "canonical": "#ffffff",
+        "paper": "Ledger Green",
+        "mode": "light",
+        "cssVariable": "--accent-ink",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "ledger-warn": {
+        "role": "tertiary",
+        "displayName": "Ledger Warn",
+        "canonical": "#8f4310",
+        "paper": "Ledger Green",
+        "mode": "light",
+        "cssVariable": "--warn",
+        "tonalRamp": [
+          "#180600",
+          "#3c1a06",
+          "#653213",
+          "#914c23",
+          "#b66d45",
+          "#d19576",
+          "#ecbea6",
+          "#ffeadf"
+        ]
+      },
+      "ledger-dark-ground": {
+        "role": "neutral",
+        "displayName": "Ledger Dark Ground",
+        "canonical": "#0e1915",
+        "paper": "Ledger Green",
+        "mode": "dark",
+        "cssVariable": "--bg",
+        "tonalRamp": [
+          "#090c0b",
+          "#212724",
+          "#3c4441",
+          "#596460",
+          "#798681",
+          "#9ea8a4",
+          "#c4cbc8",
+          "#ebf0ee"
+        ]
+      },
+      "ledger-dark-sheet": {
+        "role": "neutral",
+        "displayName": "Ledger Dark Sheet",
+        "canonical": "#13211c",
+        "paper": "Ledger Green",
+        "mode": "dark",
+        "cssVariable": "--surface",
+        "tonalRamp": [
+          "#080c0b",
+          "#202724",
+          "#3a4541",
+          "#57655f",
+          "#778680",
+          "#9ca8a3",
+          "#c2ccc8",
+          "#eaf0ee"
+        ]
+      },
+      "ledger-dark-keycap": {
+        "role": "neutral",
+        "displayName": "Ledger Dark Keycap",
+        "canonical": "#192a23",
+        "paper": "Ledger Green",
+        "mode": "dark",
+        "cssVariable": "--key",
+        "tonalRamp": [
+          "#080c0a",
+          "#1f2724",
+          "#394540",
+          "#55665e",
+          "#75877f",
+          "#9ba9a2",
+          "#c1ccc7",
+          "#e9f0ed"
+        ]
+      },
+      "ledger-dark-ink": {
+        "role": "neutral",
+        "displayName": "Ledger Dark Ink",
+        "canonical": "#e2eee8",
+        "paper": "Ledger Green",
+        "mode": "dark",
+        "cssVariable": "--ink",
+        "tonalRamp": [
+          "#090c0b",
+          "#222624",
+          "#3d4440",
+          "#5a645f",
+          "#7b8580",
+          "#9fa7a3",
+          "#c5cbc8",
+          "#ecefed"
+        ]
+      },
+      "ledger-dark-muted": {
+        "role": "neutral",
+        "displayName": "Ledger Dark Muted",
+        "canonical": "#9cb4a9",
+        "paper": "Ledger Green",
+        "mode": "dark",
+        "cssVariable": "--muted",
+        "tonalRamp": [
+          "#070d0a",
+          "#1e2823",
+          "#37463f",
+          "#53675e",
+          "#73887f",
+          "#99aaa2",
+          "#c0cdc7",
+          "#e8f1ed"
+        ]
+      },
+      "ledger-dark-rule": {
+        "role": "neutral",
+        "displayName": "Ledger Dark Rule",
+        "canonical": "#24362e",
+        "paper": "Ledger Green",
+        "mode": "dark",
+        "cssVariable": "--line",
+        "tonalRamp": [
+          "#080c0a",
+          "#1f2723",
+          "#38453f",
+          "#54665e",
+          "#75877f",
+          "#9aa9a2",
+          "#c1ccc7",
+          "#e9f0ed"
+        ]
+      },
+      "ledger-dark-rule-strong": {
+        "role": "neutral",
+        "displayName": "Ledger Dark Rule Strong",
+        "canonical": "#3f5a4e",
+        "paper": "Ledger Green",
+        "mode": "dark",
+        "cssVariable": "--line-strong",
+        "tonalRamp": [
+          "#060d0a",
+          "#1c2823",
+          "#35473e",
+          "#4f685c",
+          "#70897d",
+          "#96aba1",
+          "#becdc6",
+          "#e7f1ec"
+        ]
+      },
+      "ledger-dark-jade": {
+        "role": "primary",
+        "displayName": "Ledger Dark Jade",
+        "canonical": "#55c7a4",
+        "paper": "Ledger Green",
+        "mode": "dark",
+        "cssVariable": "--accent",
+        "tonalRamp": [
+          "#000f09",
+          "#022d21",
+          "#004e3c",
+          "#017359",
+          "#2d9679",
+          "#6db69d",
+          "#a2d7c3",
+          "#d6f7ea"
+        ]
+      },
+      "ledger-dark-jade-on": {
+        "role": "on-primary",
+        "displayName": "Ledger Dark Jade On",
+        "canonical": "#0e1915",
+        "paper": "Ledger Green",
+        "mode": "dark",
+        "cssVariable": "--accent-ink",
+        "tonalRamp": [
+          "#090c0b",
+          "#212724",
+          "#3c4441",
+          "#596460",
+          "#798681",
+          "#9ea8a4",
+          "#c4cbc8",
+          "#ebf0ee"
+        ]
+      },
+      "ledger-dark-amber": {
+        "role": "tertiary",
+        "displayName": "Ledger Dark Amber",
+        "canonical": "#f0a35e",
+        "paper": "Ledger Green",
+        "mode": "dark",
+        "cssVariable": "--warn",
+        "tonalRamp": [
+          "#160700",
+          "#3a1d00",
+          "#623501",
+          "#8e4f03",
+          "#b37133",
+          "#ce986a",
+          "#e9c09e",
+          "#ffeada"
+        ]
+      },
+      "blueprint-ground": {
+        "role": "neutral",
+        "displayName": "Blueprint Ground",
+        "canonical": "#e5edf6",
+        "paper": "Blueprint",
+        "mode": "light",
+        "cssVariable": "--bg",
+        "tonalRamp": [
+          "#0a0b0d",
+          "#222529",
+          "#3e4248",
+          "#5c6269",
+          "#7d838a",
+          "#a0a6ac",
+          "#c5cace",
+          "#eceff2"
+        ]
+      },
+      "blueprint-sheet": {
+        "role": "neutral",
+        "displayName": "Blueprint Sheet",
+        "canonical": "#f7fafd",
+        "paper": "Blueprint",
+        "mode": "light",
+        "cssVariable": "--surface",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242526",
+          "#404244",
+          "#5f6164",
+          "#808385",
+          "#a3a5a7",
+          "#c8c9cb",
+          "#edeeef"
+        ]
+      },
+      "blueprint-keycap": {
+        "role": "neutral",
+        "displayName": "Blueprint Keycap",
+        "canonical": "#eef3f9",
+        "paper": "Blueprint",
+        "mode": "light",
+        "cssVariable": "--key",
+        "tonalRamp": [
+          "#0a0b0c",
+          "#232527",
+          "#3f4246",
+          "#5e6266",
+          "#7f8388",
+          "#a2a5a9",
+          "#c7c9cc",
+          "#edeff1"
+        ]
+      },
+      "blueprint-ink": {
+        "role": "neutral",
+        "displayName": "Blueprint Ink",
+        "canonical": "#0f2747",
+        "paper": "Blueprint",
+        "mode": "light",
+        "cssVariable": "--ink",
+        "tonalRamp": [
+          "#060b14",
+          "#1a2636",
+          "#31435b",
+          "#4b6383",
+          "#6b84a7",
+          "#92a7c3",
+          "#bbcbe0",
+          "#e5effe"
+        ]
+      },
+      "blueprint-muted": {
+        "role": "neutral",
+        "displayName": "Blueprint Muted",
+        "canonical": "#475f80",
+        "paper": "Blueprint",
+        "mode": "light",
+        "cssVariable": "--muted",
+        "tonalRamp": [
+          "#060b14",
+          "#1b2635",
+          "#334359",
+          "#4d6381",
+          "#6d84a4",
+          "#94a7c1",
+          "#bccade",
+          "#e6effc"
+        ]
+      },
+      "blueprint-rule": {
+        "role": "neutral",
+        "displayName": "Blueprint Rule",
+        "canonical": "#cbd8e7",
+        "paper": "Blueprint",
+        "mode": "light",
+        "cssVariable": "--line",
+        "tonalRamp": [
+          "#090b0f",
+          "#21262b",
+          "#3b434b",
+          "#58626e",
+          "#798490",
+          "#9da6b0",
+          "#c3cad2",
+          "#ebeff4"
+        ]
+      },
+      "blueprint-rule-strong": {
+        "role": "neutral",
+        "displayName": "Blueprint Rule Strong",
+        "canonical": "#0f2747",
+        "paper": "Blueprint",
+        "mode": "light",
+        "cssVariable": "--line-strong",
+        "tonalRamp": [
+          "#060b14",
+          "#1a2636",
+          "#31435b",
+          "#4b6383",
+          "#6b84a7",
+          "#92a7c3",
+          "#bbcbe0",
+          "#e5effe"
+        ]
+      },
+      "blueprint-blue": {
+        "role": "primary",
+        "displayName": "Blueprint Blue",
+        "canonical": "#1d5fd1",
+        "paper": "Blueprint",
+        "mode": "light",
+        "cssVariable": "--accent",
+        "tonalRamp": [
+          "#000825",
+          "#052154",
+          "#113d88",
+          "#205ac0",
+          "#427ee7",
+          "#73a4f9",
+          "#accafe",
+          "#e6effe"
+        ]
+      },
+      "blueprint-blue-on": {
+        "role": "on-primary",
+        "displayName": "Blueprint Blue On",
+        "canonical": "#ffffff",
+        "paper": "Blueprint",
+        "mode": "light",
+        "cssVariable": "--accent-ink",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "blueprint-warn": {
+        "role": "tertiary",
+        "displayName": "Blueprint Warn",
+        "canonical": "#8f4310",
+        "paper": "Blueprint",
+        "mode": "light",
+        "cssVariable": "--warn",
+        "tonalRamp": [
+          "#180600",
+          "#3c1a06",
+          "#653213",
+          "#914c23",
+          "#b66d45",
+          "#d19576",
+          "#ecbea6",
+          "#ffeadf"
+        ]
+      },
+      "blueprint-dark-ground": {
+        "role": "neutral",
+        "displayName": "Blueprint Dark Ground",
+        "canonical": "#0f2a52",
+        "paper": "Blueprint",
+        "mode": "dark",
+        "cssVariable": "--bg",
+        "tonalRamp": [
+          "#050b16",
+          "#182539",
+          "#2f4360",
+          "#47628a",
+          "#6784ae",
+          "#8fa7c9",
+          "#b9cbe5",
+          "#e5effe"
+        ]
+      },
+      "blueprint-dark-sheet": {
+        "role": "neutral",
+        "displayName": "Blueprint Dark Sheet",
+        "canonical": "#13325f",
+        "paper": "Blueprint",
+        "mode": "dark",
+        "cssVariable": "--surface",
+        "tonalRamp": [
+          "#040b17",
+          "#17253b",
+          "#2c4363",
+          "#44628e",
+          "#6484b2",
+          "#8da7cd",
+          "#b7cbe8",
+          "#e5efff"
+        ]
+      },
+      "blueprint-dark-keycap": {
+        "role": "neutral",
+        "displayName": "Blueprint Dark Keycap",
+        "canonical": "#183a6b",
+        "paper": "Blueprint",
+        "mode": "dark",
+        "cssVariable": "--key",
+        "tonalRamp": [
+          "#040b18",
+          "#15253d",
+          "#2b4265",
+          "#426291",
+          "#6284b5",
+          "#8ba7d0",
+          "#b6cbea",
+          "#e5efff"
+        ]
+      },
+      "blueprint-dark-ink": {
+        "role": "neutral",
+        "displayName": "Blueprint Dark Ink",
+        "canonical": "#eaf2ff",
+        "paper": "Blueprint",
+        "mode": "dark",
+        "cssVariable": "--ink",
+        "tonalRamp": [
+          "#0a0b0e",
+          "#22252a",
+          "#3e424a",
+          "#5b626c",
+          "#7c838d",
+          "#a0a5ae",
+          "#c5c9d0",
+          "#eceff3"
+        ]
+      },
+      "blueprint-dark-muted": {
+        "role": "neutral",
+        "displayName": "Blueprint Dark Muted",
+        "canonical": "#a9c1e4",
+        "paper": "Blueprint",
+        "mode": "dark",
+        "cssVariable": "--muted",
+        "tonalRamp": [
+          "#070b13",
+          "#1c2633",
+          "#354357",
+          "#4f627e",
+          "#6f84a1",
+          "#96a6bf",
+          "#becadd",
+          "#e7effb"
+        ]
+      },
+      "blueprint-dark-rule": {
+        "role": "neutral",
+        "displayName": "Blueprint Dark Rule",
+        "canonical": "#26497c",
+        "paper": "Blueprint",
+        "mode": "dark",
+        "cssVariable": "--line",
+        "tonalRamp": [
+          "#040b18",
+          "#15253d",
+          "#2a4266",
+          "#416292",
+          "#6184b6",
+          "#8ba7d0",
+          "#b5cbea",
+          "#e5efff"
+        ]
+      },
+      "blueprint-dark-rule-strong": {
+        "role": "neutral",
+        "displayName": "Blueprint Dark Rule Strong",
+        "canonical": "#5076ad",
+        "paper": "Blueprint",
+        "mode": "dark",
+        "cssVariable": "--line-strong",
+        "tonalRamp": [
+          "#040b18",
+          "#15253d",
+          "#2a4266",
+          "#416292",
+          "#6184b6",
+          "#8aa7d0",
+          "#b5cbea",
+          "#e5effe"
+        ]
+      },
+      "blueprint-dark-pencil": {
+        "role": "primary",
+        "displayName": "Blueprint Dark Pencil",
+        "canonical": "#f4c95d",
+        "paper": "Blueprint",
+        "mode": "dark",
+        "cssVariable": "--accent",
+        "tonalRamp": [
+          "#110a00",
+          "#302300",
+          "#533f02",
+          "#795d03",
+          "#a17d0b",
+          "#bfa15b",
+          "#ddc795",
+          "#fbedcd"
+        ]
+      },
+      "blueprint-dark-pencil-on": {
+        "role": "on-primary",
+        "displayName": "Blueprint Dark Pencil On",
+        "canonical": "#0f2a52",
+        "paper": "Blueprint",
+        "mode": "dark",
+        "cssVariable": "--accent-ink",
+        "tonalRamp": [
+          "#050b16",
+          "#182539",
+          "#2f4360",
+          "#47628a",
+          "#6784ae",
+          "#8fa7c9",
+          "#b9cbe5",
+          "#e5effe"
+        ]
+      },
+      "blueprint-dark-peach": {
+        "role": "tertiary",
+        "displayName": "Blueprint Dark Peach",
+        "canonical": "#ffb38a",
+        "paper": "Blueprint",
+        "mode": "dark",
+        "cssVariable": "--warn",
+        "tonalRamp": [
+          "#160601",
+          "#3a1c0a",
+          "#61351b",
+          "#8c4f2d",
+          "#b0714e",
+          "#cc987c",
+          "#e8bfaa",
+          "#feeadf"
+        ]
+      },
+      "blueprint-dark-heat-ink": {
+        "role": "neutral",
+        "displayName": "Blueprint Dark Heat Ink",
+        "canonical": "#eaf2ff",
+        "paper": "Blueprint",
+        "mode": "dark",
+        "cssVariable": "--heat-ink",
+        "tonalRamp": [
+          "#0a0b0e",
+          "#22252a",
+          "#3e424a",
+          "#5b626c",
+          "#7c838d",
+          "#a0a5ae",
+          "#c5c9d0",
+          "#eceff3"
+        ]
+      },
+      "kraft-ground": {
+        "role": "neutral",
+        "displayName": "Kraft Ground",
+        "canonical": "#e2cdaa",
+        "paper": "Kraft",
+        "mode": "light",
+        "cssVariable": "--bg",
+        "tonalRamp": [
+          "#0f0a04",
+          "#2c2416",
+          "#4c402b",
+          "#6f5f42",
+          "#918062",
+          "#b1a38b",
+          "#d3c8b6",
+          "#f5eee2"
+        ]
+      },
+      "kraft-sheet": {
+        "role": "neutral",
+        "displayName": "Kraft Sheet",
+        "canonical": "#efe1c7",
+        "paper": "Kraft",
+        "mode": "light",
+        "cssVariable": "--surface",
+        "tonalRamp": [
+          "#0e0b06",
+          "#2a241a",
+          "#494132",
+          "#6b604b",
+          "#8c816b",
+          "#ada492",
+          "#cfc8bb",
+          "#f3eee5"
+        ]
+      },
+      "kraft-keycap": {
+        "role": "neutral",
+        "displayName": "Kraft Keycap",
+        "canonical": "#e9d7b8",
+        "paper": "Kraft",
+        "mode": "light",
+        "cssVariable": "--key",
+        "tonalRamp": [
+          "#0e0b05",
+          "#2b2418",
+          "#4b402e",
+          "#6d5f46",
+          "#8f8066",
+          "#b0a38e",
+          "#d1c8b8",
+          "#f4eee3"
+        ]
+      },
+      "kraft-ink": {
+        "role": "neutral",
+        "displayName": "Kraft Ink",
+        "canonical": "#2a1c0f",
+        "paper": "Kraft",
+        "mode": "light",
+        "cssVariable": "--ink",
+        "tonalRamp": [
+          "#0e0a07",
+          "#2b231d",
+          "#4b4036",
+          "#6d5e51",
+          "#8f7f71",
+          "#b0a297",
+          "#d1c7be",
+          "#f4ede7"
+        ]
+      },
+      "kraft-muted": {
+        "role": "neutral",
+        "displayName": "Kraft Muted",
+        "canonical": "#5a4630",
+        "paper": "Kraft",
+        "mode": "light",
+        "cssVariable": "--muted",
+        "tonalRamp": [
+          "#0f0a05",
+          "#2d2319",
+          "#4d3f30",
+          "#705d49",
+          "#927e69",
+          "#b2a291",
+          "#d3c7ba",
+          "#f5ede4"
+        ]
+      },
+      "kraft-rule": {
+        "role": "neutral",
+        "displayName": "Kraft Rule",
+        "canonical": "#cab08a",
+        "paper": "Kraft",
+        "mode": "light",
+        "cssVariable": "--line",
+        "tonalRamp": [
+          "#100a03",
+          "#2e2313",
+          "#4f3f28",
+          "#735d3e",
+          "#957f5e",
+          "#b4a288",
+          "#d5c7b3",
+          "#f6ede0"
+        ]
+      },
+      "kraft-rule-strong": {
+        "role": "neutral",
+        "displayName": "Kraft Rule Strong",
+        "canonical": "#2a1c0f",
+        "paper": "Kraft",
+        "mode": "light",
+        "cssVariable": "--line-strong",
+        "tonalRamp": [
+          "#0e0a07",
+          "#2b231d",
+          "#4b4036",
+          "#6d5e51",
+          "#8f7f71",
+          "#b0a297",
+          "#d1c7be",
+          "#f4ede7"
+        ]
+      },
+      "kraft-teal": {
+        "role": "primary",
+        "displayName": "Kraft Teal",
+        "canonical": "#165e68",
+        "paper": "Kraft",
+        "mode": "light",
+        "cssVariable": "--accent",
+        "tonalRamp": [
+          "#010e10",
+          "#0c2a2e",
+          "#1d4950",
+          "#306b74",
+          "#538d96",
+          "#81aeb6",
+          "#afd0d6",
+          "#def3f7"
+        ]
+      },
+      "kraft-teal-on": {
+        "role": "on-primary",
+        "displayName": "Kraft Teal On",
+        "canonical": "#ffffff",
+        "paper": "Kraft",
+        "mode": "light",
+        "cssVariable": "--accent-ink",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "kraft-warn": {
+        "role": "tertiary",
+        "displayName": "Kraft Warn",
+        "canonical": "#8f4310",
+        "paper": "Kraft",
+        "mode": "light",
+        "cssVariable": "--warn",
+        "tonalRamp": [
+          "#180600",
+          "#3c1a06",
+          "#653213",
+          "#914c23",
+          "#b66d45",
+          "#d19576",
+          "#ecbea6",
+          "#ffeadf"
+        ]
+      },
+      "kraft-dark-ground": {
+        "role": "neutral",
+        "displayName": "Kraft Dark Ground",
+        "canonical": "#1c140c",
+        "paper": "Kraft",
+        "mode": "dark",
+        "cssVariable": "--bg",
+        "tonalRamp": [
+          "#0d0b08",
+          "#292420",
+          "#47413a",
+          "#695f57",
+          "#8a8077",
+          "#aba39c",
+          "#cec8c2",
+          "#f2eeea"
+        ]
+      },
+      "kraft-dark-sheet": {
+        "role": "neutral",
+        "displayName": "Kraft Dark Sheet",
+        "canonical": "#251b11",
+        "paper": "Kraft",
+        "mode": "dark",
+        "cssVariable": "--surface",
+        "tonalRamp": [
+          "#0e0b08",
+          "#29241f",
+          "#484039",
+          "#6a5f54",
+          "#8c8075",
+          "#ada39a",
+          "#cfc8c1",
+          "#f2ede9"
+        ]
+      },
+      "kraft-dark-keycap": {
+        "role": "neutral",
+        "displayName": "Kraft Dark Keycap",
+        "canonical": "#2d2216",
+        "paper": "Kraft",
+        "mode": "dark",
+        "cssVariable": "--key",
+        "tonalRamp": [
+          "#0e0a07",
+          "#2a241e",
+          "#494037",
+          "#6b5f53",
+          "#8c8073",
+          "#ada399",
+          "#cfc8c0",
+          "#f3ede8"
+        ]
+      },
+      "kraft-dark-ink": {
+        "role": "neutral",
+        "displayName": "Kraft Dark Ink",
+        "canonical": "#f0e0c3",
+        "paper": "Kraft",
+        "mode": "dark",
+        "cssVariable": "--ink",
+        "tonalRamp": [
+          "#0e0b05",
+          "#2a2419",
+          "#4a4130",
+          "#6c5f49",
+          "#8e8169",
+          "#aea490",
+          "#d0c8b9",
+          "#f3eee4"
+        ]
+      },
+      "kraft-dark-muted": {
+        "role": "neutral",
+        "displayName": "Kraft Dark Muted",
+        "canonical": "#bba582",
+        "paper": "Kraft",
+        "mode": "dark",
+        "cssVariable": "--muted",
+        "tonalRamp": [
+          "#0f0a04",
+          "#2d2415",
+          "#4d402a",
+          "#705e41",
+          "#927f61",
+          "#b2a38a",
+          "#d3c7b5",
+          "#f5ede1"
+        ]
+      },
+      "kraft-dark-rule": {
+        "role": "neutral",
+        "displayName": "Kraft Dark Rule",
+        "canonical": "#3c2e1f",
+        "paper": "Kraft",
+        "mode": "dark",
+        "cssVariable": "--line",
+        "tonalRamp": [
+          "#0e0a07",
+          "#2b241c",
+          "#4a4035",
+          "#6d5e50",
+          "#8e7f70",
+          "#afa396",
+          "#d1c7be",
+          "#f3ede7"
+        ]
+      },
+      "kraft-dark-rule-strong": {
+        "role": "neutral",
+        "displayName": "Kraft Dark Rule Strong",
+        "canonical": "#5f4a32",
+        "paper": "Kraft",
+        "mode": "dark",
+        "cssVariable": "--line-strong",
+        "tonalRamp": [
+          "#0f0a05",
+          "#2d2318",
+          "#4e3f2f",
+          "#715d47",
+          "#937e67",
+          "#b3a28f",
+          "#d4c7b9",
+          "#f5ede4"
+        ]
+      },
+      "kraft-dark-teal": {
+        "role": "primary",
+        "displayName": "Kraft Dark Teal",
+        "canonical": "#62bcc6",
+        "paper": "Kraft",
+        "mode": "dark",
+        "cssVariable": "--accent",
+        "tonalRamp": [
+          "#000e10",
+          "#022b2f",
+          "#064b52",
+          "#146e76",
+          "#409099",
+          "#75b1b8",
+          "#a7d2d7",
+          "#d9f5f8"
+        ]
+      },
+      "kraft-dark-teal-on": {
+        "role": "on-primary",
+        "displayName": "Kraft Dark Teal On",
+        "canonical": "#1c140c",
+        "paper": "Kraft",
+        "mode": "dark",
+        "cssVariable": "--accent-ink",
+        "tonalRamp": [
+          "#0d0b08",
+          "#292420",
+          "#47413a",
+          "#695f57",
+          "#8a8077",
+          "#aba39c",
+          "#cec8c2",
+          "#f2eeea"
+        ]
+      },
+      "kraft-dark-amber": {
+        "role": "tertiary",
+        "displayName": "Kraft Dark Amber",
+        "canonical": "#f0a35e",
+        "paper": "Kraft",
+        "mode": "dark",
+        "cssVariable": "--warn",
+        "tonalRamp": [
+          "#160700",
+          "#3a1d00",
+          "#623501",
+          "#8e4f03",
+          "#b37133",
+          "#ce986a",
+          "#e9c09e",
+          "#ffeada"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Page title (h1), set over the one-line intro."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Note headings at the foot of each page."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Interface prose, intro line (100ch, muted), notes (68ch), picker values and options, buttons at 500, status messages at 14px."
+      },
+      "control": {
+        "displayName": "Control",
+        "purpose": "Settings button, Mode options, paper names."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Paper notes and the code-table legend."
+      },
+      "wordmark": {
+        "displayName": "Wordmark",
+        "purpose": "\"Oops/Wrong Layout\" beside the keycap logo, slash in the accent."
+      },
+      "typed": {
+        "displayName": "Typed",
+        "purpose": "Both panes above 720px."
+      },
+      "typed-compact": {
+        "displayName": "Typed Compact",
+        "purpose": "Both panes at 720px and below."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Uppercase field labels, pane heads, code-table title, Mode/Paper group heads, Copied slip, chart axes."
+      },
+      "status": {
+        "displayName": "Status",
+        "purpose": "Uppercase status line with tabular counts."
+      },
+      "credit": {
+        "displayName": "Credit",
+        "purpose": "Footer credit line."
+      },
+      "preview": {
+        "displayName": "Preview",
+        "purpose": "Home-row keys of each layout in the picker and its options."
+      },
+      "cap-source": {
+        "displayName": "Cap source legend",
+        "purpose": "Top-left, faded, on every key or kana cell."
+      },
+      "cap-target": {
+        "displayName": "Cap target legend",
+        "purpose": "Bottom-right, in the script stack."
+      }
+    },
+    "shadows": [
+      {
+        "name": "panel-overlay",
+        "value": "0 16px 40px rgb(var(--shadow) / 0.22)",
+        "purpose": "Display settings panel."
+      },
+      {
+        "name": "listbox-overlay",
+        "value": "0 16px 40px rgb(var(--shadow) / 0.2)",
+        "purpose": "Open layout picker listbox."
+      },
+      {
+        "name": "strike-ring",
+        "value": "inset 0 2px 0 rgb(var(--shadow) / 0.2), 0 0 0 3px var(--accent)",
+        "purpose": "Transient peak of the 0.24s key strike; never at rest."
+      },
+      {
+        "name": "flash-ring",
+        "value": "0 0 0 3px var(--accent)",
+        "purpose": "Transient peak of the 0.9s Auto-detect flash on both pickers."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The single easing curve for all motion."
+      },
+      {
+        "name": "entrance",
+        "value": "0.7s; rise 14px + fade; delay --r × 70ms (intro, controls, panes, table, notes)",
+        "purpose": "Once per page load (.reveal)."
+      },
+      {
+        "name": "theme-wipe",
+        "value": "560ms clip-path circle from the used control to the farthest corner, View Transition on ::view-transition-new(root)",
+        "purpose": "Paper or mode change; instant without View Transitions."
+      },
+      {
+        "name": "page-transition",
+        "value": "@view-transition navigation auto; active-tab group 0.4s; header pinned as top-bar",
+        "purpose": "Moving between the two tools."
+      },
+      {
+        "name": "pop-in",
+        "value": "0.26s (panel) / 0.22s (listbox) from opacity 0, translateY(-6px) scale(0.97), origin at anchored corner",
+        "purpose": "Floating surfaces opening."
+      },
+      {
+        "name": "option-stagger",
+        "value": "0.3s from translateY(-4px); 15ms apart, capped at 105ms",
+        "purpose": "Listbox options dropping in."
+      },
+      {
+        "name": "legend-roll",
+        "value": "0.5s from translateY(-70%) rotateX(80deg); --i × 22ms wave",
+        "purpose": "Cap legends on layout change, split-flap style."
+      },
+      {
+        "name": "swap-slide",
+        "value": "0.5s; input from +24px, output from -24px",
+        "purpose": "Swap layouts."
+      },
+      {
+        "name": "status-tick",
+        "value": "0.45s from translateY(-6px)",
+        "purpose": "Status counts after an animated update."
+      },
+      {
+        "name": "check-draw",
+        "value": "0.4s stroke-dashoffset 24 → 0; reverts after 1.4s",
+        "purpose": "Copy icon becoming a check."
+      },
+      {
+        "name": "flash",
+        "value": "0.9s; 3px accent ring and accent border at 20%",
+        "purpose": "Both pickers after Auto-detect swaps the layouts."
+      },
+      {
+        "name": "strike",
+        "value": "0.24s; key dips 2px and rings in the accent",
+        "purpose": "One per character typed out; one for a single typed character."
+      },
+      {
+        "name": "type-out",
+        "value": "~20ms per grapheme via requestAnimationFrame, ceil(n/42) graphemes per frame, so ≤ ~0.7s total",
+        "purpose": "Result typed into pane B on paste, swap, layout change, Auto-detect, output switch."
+      },
+      {
+        "name": "slip",
+        "value": "1.4s; unclip upward, hold 25–75%, lift 6px and fade",
+        "purpose": "Copied slip rising from the Copy button."
+      },
+      {
+        "name": "heat",
+        "value": "background-color 0.25s ease-out, border-color 0.25s",
+        "purpose": "Cap tint changes."
+      },
+      {
+        "name": "chevron",
+        "value": "transform 0.25s, rotate 180deg",
+        "purpose": "Picker and settings chevrons when open."
+      },
+      {
+        "name": "paper-check",
+        "value": "opacity 0.2s, scale 0.6 → 1 over 0.3s",
+        "purpose": "Check on the chosen paper."
+      },
+      {
+        "name": "logo-press",
+        "value": "key top and legends translateY(1.5px), 0.2s",
+        "purpose": "Brand hover."
+      },
+      {
+        "name": "swap-spin",
+        "value": "transform 0.35s, rotate 180deg",
+        "purpose": "Swap arrows on hover."
+      },
+      {
+        "name": "button",
+        "value": "border/background 0.15s; press translateY(1px) 0.1s",
+        "purpose": "All buttons."
+      },
+      {
+        "name": "caret-blink",
+        "value": "1.05s steps(1) infinite",
+        "purpose": "Output caret while the output has focus."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce → animation/transition durations 0.01ms; @view-transition navigation none; theme wipe skipped; result shown at once",
+        "purpose": "Everything off."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "counts-off",
+        "value": "max-width: 1100px",
+        "purpose": "Per-key usage count hidden."
+      },
+      {
+        "name": "stack",
+        "value": "max-width: 720px",
+        "purpose": "Header wraps, tabs full-width, panes stack, typed 19px, compact kana chart."
+      },
+      {
+        "name": "half-board",
+        "value": "max-width: 620px",
+        "purpose": "Keyboard splits into stacked left/right half-boards; controls reorder; segmented full width."
+      },
+      {
+        "name": "compact-settings",
+        "value": "max-width: 480px",
+        "purpose": "Settings button hides the paper name."
+      }
+    ],
+    "heat": {
+      "unused": 0,
+      "used": "0.12 + 0.28 × (count / max), never above 0.4; source legend in full ink",
+      "mostUsed": "1 for every key at the top count",
+      "hotThreshold": "keys at the top count, heat 1 (accent fill and border, ink-on-accent legends)",
+      "fill": "color-mix(in oklab, var(--heat-ink, var(--accent)) calc(var(--heat) * 100%), var(--key))"
+    },
+    "icons": {
+      "method": "Inline SVG <symbol> sprite per page (<use href=\"#i-…\">); mode icons written inline by theme.js",
+      "set": [
+        "i-chevron",
+        "i-swap",
+        "i-copy",
+        "i-check",
+        "mode-system (monitor)",
+        "mode-light (sun)",
+        "mode-dark (moon)"
+      ],
+      "grid": "24×24",
+      "stroke": "1.75, round caps and joins, currentColor, no fill",
+      "size": "18px default; 16px mode icon in settings button and listbox checks; 15px in Mode switch; 14px chevrons in pickers and settings button"
+    },
+    "logo": {
+      "description": "Keycap mark on a 32-unit grid: ink base (line-strong in dark), ground-coloured key top, filled legends outlined from the project fonts (OFL): Latin A from Public Sans 800 in ink top-left, Thai ก (ko kai, no loop, beak top-left) from Noto Sans Thai 700 in the accent bottom-right",
+      "inline": "30px in the header, 10px before the wordmark; presses 1.5px on hover",
+      "files": [
+        "icons/favicon.svg (fixed Parchment colours, Parchment dark under prefers-color-scheme: dark)",
+        "icons/favicon-32.png",
+        "icons/apple-touch-icon.png (180)",
+        "icons/icon-512.png"
+      ]
+    }
+  },
+  "components": [
+    {
+      "name": "Button",
+      "kind": "button",
+      "refersTo": "button",
+      "description": "Quiet paper button for secondary actions such as Auto-detect direction.",
+      "html": "<button class=\"ds-btn\">Auto-detect direction</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 18px;border:1px solid var(--line,#e0d2b3);border-radius:6px;background:var(--surface,#fbf6ea);color:var(--ink,#2a2118);font:500 15px \"Public Sans\",system-ui,sans-serif;cursor:pointer;transition:border-color .15s,background-color .15s,transform .1s}.ds-btn:hover{border-color:var(--line-strong,#2a2118)}.ds-btn:active{transform:translateY(1px)}.ds-btn:focus-visible{outline:2px solid var(--accent,#2f4f9a);outline-offset:2px}.ds-btn:disabled{opacity:.45;cursor:not-allowed;transform:none}"
+    },
+    {
+      "name": "Icon Button (Swap)",
+      "kind": "button",
+      "refersTo": "button-icon",
+      "description": "44px square icon button; its arrows turn over on hover.",
+      "html": "<button class=\"ds-btn ds-btn-icon\" aria-label=\"Swap layouts\"><svg class=\"ds-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M7 4 3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7\"/></svg></button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 18px;border:1px solid var(--line,#e0d2b3);border-radius:6px;background:var(--surface,#fbf6ea);color:var(--ink,#2a2118);font:500 15px \"Public Sans\",system-ui,sans-serif;cursor:pointer;transition:border-color .15s,background-color .15s,transform .1s}.ds-btn:hover{border-color:var(--line-strong,#2a2118)}.ds-btn:active{transform:translateY(1px)}.ds-btn:focus-visible{outline:2px solid var(--accent,#2f4f9a);outline-offset:2px}.ds-btn:disabled{opacity:.45;cursor:not-allowed;transform:none}.ds-icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}.ds-btn-icon{width:44px;padding:0}.ds-btn-icon .ds-icon{transition:transform .35s cubic-bezier(0.16, 1, 0.3, 1)}.ds-btn-icon:hover .ds-icon{transform:rotate(180deg)}"
+    },
+    {
+      "name": "Primary Button (Copy) with Copied slip",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single inked action per page; a paper slip rises out of it on copy and its icon draws into a check.",
+      "html": "<span class=\"ds-copy\"><span class=\"ds-slip\">Copied</span><button class=\"ds-btn ds-btn-primary\"><svg class=\"ds-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><rect x=\"9\" y=\"9\" width=\"11\" height=\"11\" rx=\"2\"/><path d=\"M5 15V6a2 2 0 0 1 2-2h9\"/></svg>Copy</button></span>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 18px;border:1px solid var(--line,#e0d2b3);border-radius:6px;background:var(--surface,#fbf6ea);color:var(--ink,#2a2118);font:500 15px \"Public Sans\",system-ui,sans-serif;cursor:pointer;transition:border-color .15s,background-color .15s,transform .1s}.ds-btn:hover{border-color:var(--line-strong,#2a2118)}.ds-btn:active{transform:translateY(1px)}.ds-btn:focus-visible{outline:2px solid var(--accent,#2f4f9a);outline-offset:2px}.ds-btn:disabled{opacity:.45;cursor:not-allowed;transform:none}.ds-icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}.ds-btn-primary{background:var(--accent,#2f4f9a);border-color:var(--accent,#2f4f9a);color:var(--accent-ink,#fff);font-weight:600}.ds-btn-primary:hover{background:color-mix(in oklab,var(--accent,#2f4f9a) 88%,var(--ink,#2a2118));border-color:var(--accent,#2f4f9a)}.ds-copy{position:relative;display:inline-block;margin-top:32px}.ds-slip{position:absolute;left:50%;bottom:calc(100% + 6px);translate:-50% 0;padding:4px 10px;border:1px solid var(--line-strong,#2a2118);border-radius:4px;background:var(--surface,#fbf6ea);color:var(--ink,#2a2118);font:500 11px \"Martian Mono\",ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;;white-space:nowrap;pointer-events:none;opacity:0;clip-path:inset(100% 0 0 0)}.ds-copy:has(.ds-btn-primary:active) .ds-slip,.ds-copy:has(.ds-btn-primary:focus-visible) .ds-slip{animation:ds-slip 1.4s cubic-bezier(0.16, 1, 0.3, 1)}@keyframes ds-slip{0%{opacity:1;clip-path:inset(100% 0 0 0);transform:translateY(8px)}25%,75%{opacity:1;clip-path:inset(0);transform:none}100%{opacity:0;clip-path:inset(0);transform:translateY(-6px)}}@media (prefers-reduced-motion:reduce){.ds-slip{animation:none!important}}"
+    },
+    {
+      "name": "Layout picker with listbox",
+      "kind": "input",
+      "refersTo": "select-button",
+      "description": "Custom listbox over a hidden native select: name, home-row preview and chevron; options with preview and an accent check.",
+      "html": "<div class=\"ds-field\"><span class=\"ds-label\">Typed as</span><div class=\"ds-select\"><button class=\"ds-select-btn\" aria-haspopup=\"listbox\" aria-expanded=\"true\"><span class=\"v\">Thai Kedmanee</span><span class=\"ds-prev\">ฟหกดเ</span><svg class=\"ds-icon ds-chev\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></button><ul class=\"ds-listbox\" role=\"listbox\"><li role=\"option\" aria-selected=\"false\"><span class=\"v\">English (US QWERTY)</span><span class=\"ds-prev\">asdfg</span><svg class=\"ds-icon ds-check\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m5 12.5 4.5 4.5L19 7.5\"/></svg></li><li role=\"option\" aria-selected=\"true\" class=\"active\"><span class=\"v\">Thai Kedmanee</span><span class=\"ds-prev\">ฟหกดเ</span><svg class=\"ds-icon ds-check\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m5 12.5 4.5 4.5L19 7.5\"/></svg></li><li role=\"option\" aria-selected=\"false\"><span class=\"v\">Hebrew</span><span class=\"ds-prev\">שדגכע</span><svg class=\"ds-icon ds-check\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m5 12.5 4.5 4.5L19 7.5\"/></svg></li></ul></div></div>",
+      "css": ".ds-icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}.ds-label{font:500 11px \"Martian Mono\",ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--muted,#645641)}.ds-field{display:flex;flex-direction:column;gap:6px;width:300px;max-width:100%}.ds-select{position:relative}.ds-select-btn{display:flex;align-items:center;gap:10px;width:100%;height:44px;padding:0 12px;font:15px \"Public Sans\",system-ui,sans-serif;color:var(--ink,#2a2118);text-align:left;background:var(--surface,#fbf6ea);border:1px solid var(--line,#e0d2b3);border-radius:6px;cursor:pointer;transition:border-color .15s}.ds-select-btn:hover,.ds-select-btn[aria-expanded=true]{border-color:var(--line-strong,#2a2118)}.ds-select-btn:focus-visible{outline:2px solid var(--accent,#2f4f9a);outline-offset:2px}.ds-select-btn .v,.ds-listbox .v{flex:1;min-width:0}.ds-prev{font:13px \"Martian Mono\",\"Noto Sans Thai\",\"Noto Sans Hebrew\",monospace;letter-spacing:.08em;color:var(--muted,#645641);white-space:nowrap}.ds-chev{width:14px;height:14px;color:var(--muted,#645641);transition:transform .25s cubic-bezier(.16,1,.3,1)}.ds-select-btn[aria-expanded=true] .ds-chev{transform:rotate(180deg)}.ds-listbox{margin:6px 0 0;padding:6px;list-style:none;background:var(--surface,#fbf6ea);border:1px solid var(--line-strong,#2a2118);border-radius:10px;box-shadow:0 16px 40px rgb(var(--shadow,42 33 24) / .2);animation:ds-pop .22s cubic-bezier(.16,1,.3,1)}.ds-listbox li{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:6px;font:15px \"Public Sans\",system-ui,sans-serif;color:var(--ink,#2a2118);cursor:pointer}.ds-listbox li:hover,.ds-listbox li.active{background:var(--key,#f8f1e0)}.ds-listbox [aria-selected=true]{font-weight:600}.ds-check{width:16px;height:16px;color:var(--accent,#2f4f9a);visibility:hidden}.ds-listbox [aria-selected=true] .ds-check{visibility:visible}@keyframes ds-pop{from{opacity:0;transform:translateY(-6px) scale(.97)}}"
+    },
+    {
+      "name": "Segmented switch",
+      "kind": "chip",
+      "refersTo": "segmented-option-checked",
+      "description": "Two-option output switch; the checked option is filled with ink.",
+      "html": "<div class=\"ds-seg\" role=\"radiogroup\" aria-label=\"Output\"><label><input type=\"radio\" name=\"ds-k\" checked>Hiragana ひらがな</label><label><input type=\"radio\" name=\"ds-k\">Katakana カタカナ</label></div>",
+      "css": ".ds-seg{display:inline-flex;padding:3px;gap:2px;border:1px solid var(--line,#e0d2b3);border-radius:8px;background:var(--surface,#fbf6ea)}.ds-seg label{position:relative;white-space:nowrap;padding:8px 16px;border-radius:6px;font:15px \"Public Sans\",\"Noto Sans JP\",system-ui,sans-serif;color:var(--ink,#2a2118);cursor:pointer}.ds-seg input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}.ds-seg label:hover{background:var(--key,#f8f1e0)}.ds-seg label:has(input:checked){background:var(--ink,#2a2118);color:var(--bg,#f1e7d0)}.ds-seg label:has(input:focus-visible){outline:2px solid var(--accent,#2f4f9a);outline-offset:2px}"
+    },
+    {
+      "name": "Header with logo, tabs and settings button",
+      "kind": "nav",
+      "refersTo": "tab-active",
+      "description": "Ruled header strip: keycap logo and mono wordmark, ink-filled current tab, settings button with swatch, paper name, mode icon and chevron.",
+      "html": "<header class=\"ds-top\"><a class=\"ds-brand\" href=\"#\"><svg class=\"ds-logo\" viewBox=\"0 0 32 32\" aria-hidden=\"true\"><rect class=\"b\" x=\"1\" y=\"2\" width=\"30\" height=\"29\" rx=\"7\"/><rect class=\"t\" x=\"3\" y=\"3\" width=\"26\" height=\"23.5\" rx=\"5.5\"/><path class=\"l\" d=\"M5.99 14.6 8.97 6.2H11.02L14.01 14.6H12.05L11.43 12.81H8.59L7.96 14.6ZM9.02 11.11H10.97L10 8.1Z\"/><path class=\"s\" d=\"M18.01 23.6V21.1Q18.01 20.16 18.39 19.65Q18.76 19.14 19.45 18.93L19.47 18.87L17.86 18.28V17.9Q17.86 17.16 18.3 16.55Q18.73 15.93 19.58 15.57Q20.42 15.2 21.64 15.2Q22.78 15.2 23.6 15.55Q24.42 15.9 24.88 16.6Q25.34 17.3 25.34 18.36V23.6H23.09V18.49Q23.09 17.75 22.69 17.37Q22.3 17 21.58 17Q20.89 17 20.54 17.29Q20.2 17.58 20.17 18L21.5 18.61L21.34 19.59Q20.8 19.62 20.53 19.98Q20.26 20.34 20.26 20.95V23.6Z\"/></svg><span>Oops<b>/</b>Wrong Layout</span></a><nav class=\"ds-tabs\"><a href=\"#\" aria-current=\"page\">Layout Fix</a><a href=\"#\">Romaji → Kana</a></nav><button class=\"ds-theme-btn\" aria-haspopup=\"dialog\" aria-expanded=\"false\"><span class=\"ds-swatch\"></span>Parchment<svg class=\"ds-icon ds-mode\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"12\" rx=\"2\"/><path d=\"M8 20h8M12 16v4\"/></svg><svg class=\"ds-icon ds-chev\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></button></header>",
+      "css": ".ds-icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}.ds-top{display:flex;align-items:center;gap:32px;padding:16px 24px;border-bottom:1px solid var(--line-strong,#2a2118);background:var(--bg,#f1e7d0)}.ds-brand{display:inline-flex;align-items:center;gap:10px;font:500 15px \"Martian Mono\",ui-monospace,monospace;letter-spacing:-.02em;color:var(--ink,#2a2118);text-decoration:none;white-space:nowrap}.ds-brand b{font-weight:500;color:var(--accent,#2f4f9a);margin:0 1px}.ds-logo{width:30px;height:30px;flex:none}.ds-logo .b{fill:var(--ink,#2a2118)}.ds-logo .t{fill:var(--bg,#f1e7d0)}.ds-logo .l{fill:var(--ink,#2a2118)}.ds-logo .s{fill:var(--accent,#2f4f9a)}.ds-logo .t,.ds-logo .l,.ds-logo .s{transition:transform .2s cubic-bezier(.16,1,.3,1)}.ds-brand:hover .ds-logo .t,.ds-brand:hover .ds-logo .l,.ds-brand:hover .ds-logo .s{transform:translateY(1.5px)}.ds-tabs{display:flex;gap:2px}.ds-tabs a{padding:8px 14px;border-radius:6px;color:var(--ink,#2a2118);text-decoration:none;font:15px \"Public Sans\",system-ui,sans-serif}.ds-tabs a:hover{background:var(--key,#f8f1e0)}.ds-tabs a[aria-current=page]{background:var(--ink,#2a2118);color:var(--bg,#f1e7d0)}.ds-tabs a:focus-visible,.ds-theme-btn:focus-visible{outline:2px solid var(--accent,#2f4f9a);outline-offset:2px}.ds-theme-btn{margin-left:auto;display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border:1px solid var(--line,#e0d2b3);border-radius:8px;background:var(--surface,#fbf6ea);color:var(--ink,#2a2118);font:500 14px \"Public Sans\",system-ui,sans-serif;cursor:pointer;transition:border-color .15s}.ds-theme-btn:hover{border-color:var(--line-strong,#2a2118)}.ds-swatch{width:16px;height:16px;flex:none;border-radius:50%;border:1px solid var(--line-strong,#2a2118);background:var(--accent,#2f4f9a);box-shadow:inset 0 0 0 4px var(--bg,#f1e7d0)}.ds-mode{width:16px;height:16px;color:var(--muted,#645641)}.ds-chev{width:14px;height:14px;transition:transform .25s cubic-bezier(.16,1,.3,1)}.ds-theme-btn[aria-expanded=true] .ds-chev{transform:rotate(180deg)}"
+    },
+    {
+      "name": "Display settings panel",
+      "kind": "custom",
+      "refersTo": "settings-panel",
+      "description": "Non-modal dialog with two independent choices: Mode (System/Light/Dark segmented) and Paper (five rows with a light|dark swatch tile).",
+      "html": "<div class=\"ds-panel\" role=\"dialog\" aria-label=\"Display settings\"><div class=\"ds-group\"><span class=\"ds-label\">Mode</span><div class=\"ds-modes\" role=\"radiogroup\" aria-label=\"Mode\"><label><input type=\"radio\" name=\"ds-mode\" checked><svg class=\"ds-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"12\" rx=\"2\"/><path d=\"M8 20h8M12 16v4\"/></svg>System</label><label><input type=\"radio\" name=\"ds-mode\"><svg class=\"ds-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4\"/></svg>Light</label><label><input type=\"radio\" name=\"ds-mode\"><svg class=\"ds-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z\"/></svg>Dark</label></div></div><div class=\"ds-group\"><span class=\"ds-label\">Paper</span><div class=\"ds-papers\" role=\"radiogroup\" aria-label=\"Paper\"><label class=\"ds-paper\"><input type=\"radio\" name=\"ds-paper\" checked><span class=\"ds-sw\" style=\"--l-bg:#f1e7d0;--l-ac:#2f4f9a;--d-bg:#1b1611;--d-ac:#93abee\"><i></i><i></i></span><span class=\"ds-pt\"><span class=\"n\">Parchment</span><span class=\"note\">Warm sheet, ink blue</span></span><svg class=\"ds-icon ds-check\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m5 12.5 4.5 4.5L19 7.5\"/></svg></label><label class=\"ds-paper\"><input type=\"radio\" name=\"ds-paper\"><span class=\"ds-sw\" style=\"--l-bg:#eceef3;--l-ac:#3d3bd6;--d-bg:#111318;--d-ac:#a3a1ff\"><i></i><i></i></span><span class=\"ds-pt\"><span class=\"n\">Carbon Copy</span><span class=\"note\">Cool white, indigo carbon</span></span><svg class=\"ds-icon ds-check\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m5 12.5 4.5 4.5L19 7.5\"/></svg></label><label class=\"ds-paper\"><input type=\"radio\" name=\"ds-paper\"><span class=\"ds-sw\" style=\"--l-bg:#e8eeea;--l-ac:#0b7258;--d-bg:#0e1915;--d-ac:#55c7a4\"><i></i><i></i></span><span class=\"ds-pt\"><span class=\"n\">Ledger Green</span><span class=\"note\">Ruled green, jade ink</span></span><svg class=\"ds-icon ds-check\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m5 12.5 4.5 4.5L19 7.5\"/></svg></label><label class=\"ds-paper\"><input type=\"radio\" name=\"ds-paper\"><span class=\"ds-sw\" style=\"--l-bg:#e5edf6;--l-ac:#1d5fd1;--d-bg:#0f2a52;--d-ac:#f4c95d\"><i></i><i></i></span><span class=\"ds-pt\"><span class=\"n\">Blueprint</span><span class=\"note\">Drafting blue, pencil yellow</span></span><svg class=\"ds-icon ds-check\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m5 12.5 4.5 4.5L19 7.5\"/></svg></label><label class=\"ds-paper\"><input type=\"radio\" name=\"ds-paper\"><span class=\"ds-sw\" style=\"--l-bg:#e2cdaa;--l-ac:#165e68;--d-bg:#1c140c;--d-ac:#62bcc6\"><i></i><i></i></span><span class=\"ds-pt\"><span class=\"n\">Kraft</span><span class=\"note\">Brown wrap, stamp teal</span></span><svg class=\"ds-icon ds-check\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m5 12.5 4.5 4.5L19 7.5\"/></svg></label></div></div></div>",
+      "css": ".ds-icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}.ds-label{font:500 11px \"Martian Mono\",ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--muted,#645641)}.ds-panel{width:320px;max-width:100%;padding:14px;display:grid;gap:16px;background:var(--surface,#fbf6ea);border:1px solid var(--line-strong,#2a2118);border-radius:10px;box-shadow:0 16px 40px rgb(var(--shadow,42 33 24) / .22);color:var(--ink,#2a2118);animation:ds-pop .26s cubic-bezier(.16,1,.3,1);transform-origin:top right}.ds-group{display:grid;gap:8px}.ds-modes{display:grid;grid-template-columns:repeat(3,1fr);padding:3px;gap:2px;border:1px solid var(--line,#e0d2b3);border-radius:8px;background:var(--surface,#fbf6ea)}.ds-modes label{position:relative;display:flex;align-items:center;justify-content:center;gap:6px;padding:8px 6px;border-radius:6px;font:500 14px \"Public Sans\",system-ui,sans-serif;cursor:pointer}.ds-modes .ds-icon{width:15px;height:15px}.ds-modes input,.ds-paper input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}.ds-modes label:has(input:checked){background:var(--ink,#2a2118);color:var(--bg,#f1e7d0)}.ds-modes label:has(input:focus-visible){outline:2px solid var(--accent,#2f4f9a);outline-offset:2px}.ds-papers{display:grid;gap:2px}.ds-paper{position:relative;display:flex;align-items:center;gap:12px;padding:8px 10px;border-radius:8px;cursor:pointer;transition:background-color .15s}.ds-paper:hover,.ds-paper:has(input:checked){background:var(--key,#f8f1e0)}.ds-paper:has(input:focus-visible){outline:2px solid var(--accent,#2f4f9a);outline-offset:-2px}.ds-sw{display:grid;grid-template-columns:1fr 1fr;width:40px;height:28px;flex:none;overflow:hidden;border-radius:6px;border:1px solid rgb(var(--shadow,42 33 24) / .3)}.ds-sw i{position:relative;background:var(--l-bg)}.ds-sw i+i{background:var(--d-bg)}.ds-sw i::after{content:\"\";position:absolute;left:50%;top:50%;width:9px;height:9px;translate:-50% -50%;border-radius:2px;background:var(--l-ac)}.ds-sw i+i::after{background:var(--d-ac)}.ds-pt{display:grid;min-width:0}.ds-pt .n{font:500 14px \"Public Sans\",system-ui,sans-serif}.ds-pt .note{font:12px \"Public Sans\",system-ui,sans-serif;color:var(--muted,#645641)}.ds-paper .ds-check{margin-left:auto;color:var(--accent,#2f4f9a);opacity:0;transform:scale(.6);transition:opacity .2s,transform .3s cubic-bezier(.16,1,.3,1)}.ds-paper:has(input:checked) .ds-check{opacity:1;transform:none}@keyframes ds-pop{from{opacity:0;transform:translateY(-6px) scale(.97)}}"
+    },
+    {
+      "name": "Pane frame",
+      "kind": "card",
+      "refersTo": "pane-frame",
+      "description": "Two equal halves of one ruled sheet: A typed, B fixed, with mono heads, counts and an accent caret.",
+      "html": "<div class=\"ds-panes\"><div class=\"ds-pane\"><div class=\"ds-head\"><span>A · Typed</span><span>6 chars</span></div><div class=\"ds-text\">l;ylfu</div></div><div class=\"ds-pane\"><div class=\"ds-head\"><span>B · Fixed</span><span>6 chars</span></div><div class=\"ds-text\" tabindex=\"0\">สวัสดี<span class=\"ds-caret\"></span></div></div></div>",
+      "css": ".ds-panes{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line-strong,#2a2118);border-radius:10px;background:var(--surface,#fbf6ea);overflow:hidden}.ds-pane{padding:14px 20px 16px;min-width:0}.ds-pane+.ds-pane{border-left:1px solid var(--line-strong,#2a2118)}.ds-head{display:flex;justify-content:space-between;gap:12px;padding-bottom:10px;margin-bottom:12px;border-bottom:1px solid var(--line,#e0d2b3);font:500 11px \"Martian Mono\",ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--muted,#645641);font-variant-numeric:tabular-nums}.ds-pane:has(:focus-visible) .ds-head{border-bottom-color:var(--accent,#2f4f9a)}.ds-text{min-height:120px;color:var(--ink,#2a2118);font:22px/1.5 \"Martian Mono\",\"Noto Sans Thai\",\"Noto Sans JP\",\"Noto Sans Hebrew\",sans-serif;letter-spacing:-.01em;outline:none}.ds-caret{display:inline-block;width:2px;height:1.15em;margin-left:1px;vertical-align:-.2em;background:var(--accent,#2f4f9a);opacity:0}.ds-text:focus .ds-caret{opacity:1;animation:ds-blink 1.05s steps(1) infinite}@keyframes ds-blink{50%{opacity:0}}@media (max-width:720px){.ds-panes{grid-template-columns:1fr}.ds-pane+.ds-pane{border-left:0;border-top:1px solid var(--line-strong,#2a2118)}}"
+    },
+    {
+      "name": "Code-table caps",
+      "kind": "custom",
+      "refersTo": "cap",
+      "description": "Keyboard cells: source legend top-left, target bottom-right, tinted by usage heat; the hot key is filled with the accent and a struck key dips and rings.",
+      "html": "<div class=\"ds-table\"><div class=\"ds-table-head\"><span class=\"ds-label\">Key map · Thai → US English</span></div><div class=\"ds-row\"><span class=\"ds-cap\" style=\"--heat:0\"><span class=\"ds-from\">ๆ</span><span class=\"ds-to\">q</span></span><span class=\"ds-cap used\" style=\"--heat:.3\"><span class=\"ds-from\">ไ</span><span class=\"ds-to\">w</span></span><span class=\"ds-cap used\" style=\"--heat:.45\"><span class=\"ds-from\">ำ</span><span class=\"ds-to\">e</span></span><span class=\"ds-cap used hot\" style=\"--heat:1\"><span class=\"ds-from\">พ</span><span class=\"ds-to\">r</span></span><button class=\"ds-cap used ds-strike\" style=\"--heat:.2\" aria-label=\"Press to strike\"><span class=\"ds-from\">ะ</span><span class=\"ds-to\">t</span></button></div></div>",
+      "css": ".ds-table{padding:18px 20px 12px;border:1px solid var(--line,#e0d2b3);border-radius:10px;background:var(--surface,#fbf6ea)}.ds-table-head{margin-bottom:12px}.ds-label{font:500 11px \"Martian Mono\",ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--muted,#645641)}.ds-row{display:flex;gap:8px}.ds-cap{--cap:64px;position:relative;width:var(--cap);height:calc(var(--cap)*.86);padding:0;border:1px solid var(--line,#e0d2b3);border-radius:6px;background:color-mix(in oklab,var(--accent,#2f4f9a) calc(var(--heat)*100%),var(--key,#f8f1e0));color:var(--ink,#2a2118);transition:background-color .25s cubic-bezier(0.16, 1, 0.3, 1),border-color .25s}.ds-cap.used{border-color:color-mix(in oklab,var(--accent,#2f4f9a) 50%,transparent)}.ds-cap.hot{color:var(--accent-ink,#fff);border-color:var(--accent,#2f4f9a)}.ds-from,.ds-to{position:absolute;line-height:1}.ds-from{left:7px;top:6px;font:400 11px \"Martian Mono\",\"Noto Sans Thai\",sans-serif;color:var(--muted,#645641)}.ds-cap.hot .ds-from{color:inherit;opacity:.85}.ds-to{right:7px;bottom:6px;font:400 19px \"Noto Sans Thai\",\"Martian Mono\",sans-serif}button.ds-cap{cursor:pointer}.ds-cap:focus-visible{outline:2px solid var(--accent,#2f4f9a);outline-offset:2px}.ds-strike:active{animation:ds-strike .24s cubic-bezier(0.16, 1, 0.3, 1)}@keyframes ds-strike{0%{transform:none;box-shadow:0 0 0 0 var(--accent,#2f4f9a)}30%{transform:translateY(2px);box-shadow:inset 0 2px 0 rgb(var(--shadow,42 33 24)/.2),0 0 0 3px var(--accent,#2f4f9a)}100%{transform:none;box-shadow:0 0 0 0 transparent}}@media (prefers-reduced-motion:reduce){.ds-strike:active{animation:none}}"
+    },
+    {
+      "name": "Status line",
+      "kind": "custom",
+      "refersTo": "status",
+      "description": "One mono uppercase line: accent lead count, sienna miss count when non-zero, the conversion rule at right.",
+      "html": "<div class=\"ds-status\"><span class=\"lead\">Mapped <b>12</b></span><span class=\"warn\">No match <b>1</b></span><span>Keys struck <b>9</b></span><span class=\"rule\">Same physical key → same character</span></div>",
+      "css": ".ds-status{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 28px;font:500 12px \"Martian Mono\",ui-monospace,monospace;letter-spacing:.04em;text-transform:uppercase;color:var(--muted,#645641)}.ds-status b{font-weight:500;color:var(--ink,#2a2118);font-variant-numeric:tabular-nums}.ds-status .lead b{color:var(--accent,#2f4f9a)}.ds-status .warn,.ds-status .warn b{color:var(--warn,#8f4310)}.ds-status .rule{margin-left:auto}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Telegraph Code Book, Typed Out",
+    "overview": "Conversion here is a fixed code table, so the interface is drawn as one: a ruled sheet of paper where every physical key is a cell carrying its source character top-left and its target character bottom-right, and the result is struck into the second pane like a typewriter. The mechanism is visible at all times. The user sees which keys their text used, how often, and what each became, which is why the conversion reads as mechanical rather than guessed. The logo is the same idea at 30px: one keycap with a Latin A top-left and a Thai ก bottom-right.\n\nThe material is flat stationery: a tinted ground, a lighter sheet, keycaps one step tonally apart, and 1px ink rules that do all the structural work. There is no texture, no gradient, and no resting shadow. The user picks the stationery: five papers (Parchment, Carbon Copy, Ledger Green, Blueprint, Kraft), each printed in a light and a dark mode. One saturated ink per paper and mode (ink-blue on Parchment light) is held back for the things that are live: struck and used keys, the caret, the primary Copy action, focus, the chosen option. Everything else is the paper's ink and its faded variant.\n\nDensity is that of a working tool: one header rule, a heading over a single line of intro, a row of controls, the two-pane frame, a single mono status line, then the full-width code table, two short notes and a one-line credit. Type splits by job: Public Sans speaks the interface, Martian Mono carries anything that is a code, count, label or typed character, and Noto Sans Thai, JP and Hebrew carry the scripts the code table maps into.",
+    "keyCharacteristics": [
+      "Flat ruled stationery; 1px rules in strong ink outline the frames, light rules divide inside them.",
+      "One accent per paper and mode, reserved for live state and the single primary action.",
+      "Mono for codes, counts, labels and typed text; sans for interface prose.",
+      "The code table is the signature: legend top-left, result bottom-right, heat tint from the accent. The keycap logo repeats it.",
+      "Motion is mechanical and short: a key strike, a typed-out result, a paper slip, legends rolling like a split-flap board.",
+      "Five papers × two modes from one token set; Mode = System follows the OS."
+    ],
+    "rules": [
+      {
+        "name": "The Live Ink Rule",
+        "body": "The accent marks only what is live or chosen: used and struck keys, the caret, focus, selection, the lead count, the chosen paper and layout, the Auto-detect flash, Copy. The two brand marks (the wordmark slash and the logo's ก) are the only static accent. Nothing else decorative is accent-coloured.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Token Set Rule",
+        "body": "Every paper in every mode defines the same eleven role variables and nothing else changes between them; the one optional extra is `--heat-ink`. A new surface reads its colours from the roles, never from a paper's hex values. The only places hex values are written out are the paper swatches in the settings panel (which must preview papers other than the current one) and the static favicon; both must match the stylesheet.",
+        "section": "colors"
+      },
+      {
+        "name": "The Code Is Mono Rule",
+        "body": "Anything the user could read as a code, a count or a typed character is set in Martian Mono with tabular figures where it counts; sentences are set in Public Sans.",
+        "section": "typography"
+      },
+      {
+        "name": "The Script Fallback Rule",
+        "body": "Any element that can show user text or a mapped character carries the `--script` stack after its primary face, so Thai, kana and Hebrew render in Noto at matching weight.",
+        "section": "typography"
+      },
+      {
+        "name": "The Half-Board Rule",
+        "body": "On a phone the keyboard is never shrunk below legibility; it is cut at the hand split into two stacked half-boards, each row keeping its physical stagger.",
+        "section": "layout"
+      },
+      {
+        "name": "The Flat Sheet Rule",
+        "body": "Resting surfaces never cast shadows; only the two floating surfaces do (the settings panel and an open listbox), and a key or picker only for the instant it is struck or flashed.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Shown Mechanism Rule",
+        "body": "Every converter surface pairs its result with a code table that shows, per key or cell, the source, the target and how often it was used.",
+        "section": "components"
+      },
+      {
+        "name": "The Struck Key Rule",
+        "body": "Motion only ever answers the user: a keystroke, a conversion, a copy, a setting, a menu or a page change. The one exception is the single entrance when a page loads; nothing else moves on its own, nothing loops but the focused caret, and everything stops under reduced motion.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "**Do** take every colour from the eleven role variables so all five papers work unchanged in both modes.",
+      "**Do** define a light and a dark token set for any new paper, and check its accent against its own keycap before adding `--heat-ink`.",
+      "**Do** keep the accent for live state and the single primary action: used and struck keys, caret, focus, selection, the lead count, the chosen paper and layout, Copy.",
+      "**Do** set codes, counts, labels and typed text in Martian Mono (uppercase 11px at 0.06em for labels) and add the `--script` stack wherever user or mapped text can appear.",
+      "**Do** put the source legend top-left and the target bottom-right on every cap, and drive its tint from the heat ink by usage.",
+      "**Do** build structure with 1px rules: strong ink for frames, light rules inside, dashed for gaps and cuts.",
+      "**Do** keep new motion short, on the shared ease-out curve, tied to a user action, and switched off under reduced motion.",
+      "**Do** draw icons as inline SVG with a 1.75 round stroke in `currentColor`."
+    ],
+    "donts": [
+      "**Don't** use gradients, textures, or drop shadows on resting surfaces; the settings panel and an open listbox are the only shadows.",
+      "**Don't** use red; the warning ink is burnt sienna in light mode (amber, or peach on Blueprint, in dark) and appears only on a non-zero miss count.",
+      "**Don't** add a second accent or a second primary button to a page.",
+      "**Don't** shrink the keyboard below legibility on a phone; split it into half-boards instead.",
+      "**Don't** use icon fonts, emoji or text glyphs as interface icons.",
+      "**Don't** couple paper and mode back into one theme list; they are two independent choices."
+    ]
+  }
+}

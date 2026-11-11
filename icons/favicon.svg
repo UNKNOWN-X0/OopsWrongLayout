@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .base { fill: #2a2118; }
+    .top { fill: #f1e7d0; }
+    .latin { fill: #2a2118; }
+    .script { fill: #2f4f9a; }
+    @media (prefers-color-scheme: dark) {
+      .base { fill: #5c4e3c; }
+      .top { fill: #231d16; }
+      .latin { fill: #efe4cc; }
+      .script { fill: #93abee; }
+    }
+  </style>
+  <!-- keycap: dark base showing below a lighter key top -->
+  <rect class="base" x="1" y="2" width="30" height="29" rx="7"/>
+  <rect class="top" x="3" y="3" width="26" height="23.5" rx="5.5"/>
+  <!-- legend top-left, the character typed: "A" from Public Sans (OFL) -->
+  <path class="latin" d="M5.99 14.6 8.97 6.2H11.02L14.01 14.6H12.05L11.43 12.81H8.59L7.96 14.6ZM9.02 11.11H10.97L10 8.1Z"/>
+  <!-- legend bottom-right, the character meant: Thai ko kai from Noto Sans Thai (OFL) -->
+  <path class="script" d="M18.01 23.6V21.1Q18.01 20.16 18.39 19.65Q18.76 19.14 19.45 18.93L19.47 18.87L17.86 18.28V17.9Q17.86 17.16 18.3 16.55Q18.73 15.93 19.58 15.57Q20.42 15.2 21.64 15.2Q22.78 15.2 23.6 15.55Q24.42 15.9 24.88 16.6Q25.34 17.3 25.34 18.36V23.6H23.09V18.49Q23.09 17.75 22.69 17.37Q22.3 17 21.58 17Q20.89 17 20.54 17.29Q20.2 17.58 20.17 18L21.5 18.61L21.34 19.59Q20.8 19.62 20.53 19.98Q20.26 20.34 20.26 20.95V23.6Z"/>
+</svg>
