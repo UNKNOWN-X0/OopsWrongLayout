@@ -1,9 +1,7 @@
 # Graph Report - OopsWrongLayout  (2026-11-12)
 
 ## Corpus Check
-- 18 files · ~24,351 words
-- Verdict: corpus is large enough that graph structure adds value.
-- Unclassified: 4 file(s) not represented in the graph (top: (none) 3, .css 1)
+- cluster-only mode — file stats not available
 
 ## Summary
 - 177 nodes · 196 edges · 17 communities (14 shown, 3 thin omitted)
@@ -16,28 +14,28 @@
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- CI Workflow
-- script.js
-- README
-- Design System: Oops/Wrong Layout
-- Project standards
-- theme.js
-- Layout Fix Page
-- Kana Mapping Data
-- Romaji Kana Page
-- engines.test.cjs
-- Components
-- Product
-- typewriter.js
-- Layout Fix and Romaji → Kana
-- enhanceSelect
-- Roadmap
+- GitHub Pages Build Workflow
+- Layout Fix Page Logic
+- Project Docs and Agent Notes
+- Design System Overview
+- Layout Engine and Project Rules
+- Display Settings (Mode and Paper)
+- Layout Fix Concepts
+- Kana Lookup Table
+- Romaji to Kana Concepts
+- Engine Tests
+- Design Components and Motion
+- Product Definition
+- Typed-Out Result and Copy
+- Design Direction Contract
+- Layout Picker (Custom Select)
+- Product Roadmap
 
 ## God Nodes (most connected - your core abstractions)
 1. `Components` - 13 edges
 2. `Product` - 9 edges
-3. `Project standards` - 9 edges
-4. `Design System: Oops/Wrong Layout` - 9 edges
+3. `Design System: Oops/Wrong Layout` - 9 edges
+4. `Project standards` - 9 edges
 5. `doConvert()` - 7 edges
 6. `enhanceSelect()` - 7 edges
 7. `README` - 7 edges
@@ -62,59 +60,59 @@
 
 ## Communities (17 total, 3 thin omitted)
 
-### Community 0 - "CI Workflow"
+### Community 0 - "GitHub Pages Build Workflow"
 Cohesion: 0.14
 Nodes (13): runs-on, steps, jobs, build, name, branches, branches, name (+5 more)
 
-### Community 1 - "script.js"
+### Community 1 - "Layout Fix Page Logic"
 Cohesion: 0.17
 Nodes (18): autoDetect(), calm, caps, doConvert(), els, KB_ROWS, legend(), onLayoutChange() (+10 more)
 
-### Community 2 - "README"
+### Community 2 - "Project Docs and Agent Notes"
 Cohesion: 0.19
 Nodes (8): Local workflow, Project data, Project instructions, Google Fonts SIL Open Font License notices, Romaji-to-kana tests, README, Keyboard layout round-trip tests, Dependency-free static browser tools
 
-### Community 3 - "Design System: Oops/Wrong Layout"
+### Community 3 - "Design System Overview"
 Cohesion: 0.11
 Nodes (19): Colors, Design System: Oops/Wrong Layout, Do:, Do's and Don'ts, Don't:, Elevation & Depth, Hierarchy, Layout (+11 more)
 
-### Community 4 - "Project standards"
+### Community 4 - "Layout Engine and Project Rules"
 Cohesion: 0.13
 Nodes (12): LAYOUTS, scriptScore(), SLOTS, Accessibility, Code, Copy, Definition of done, Interface (+4 more)
 
-### Community 5 - "theme.js"
+### Community 5 - "Display Settings (Mode and Paper)"
 Cohesion: 0.14
 Nodes (14): btn, buildPanel(), darkQuery, memory, MODE_ICONS, MODES, motionOff(), panel (+6 more)
 
-### Community 6 - "Layout Fix Page"
+### Community 6 - "Layout Fix Concepts"
 Cohesion: 0.40
 Nodes (5): Layout Fix page, Auto-detect conversion direction, Keyboard layout tables, Layout Fix, Physical-key remapping
 
-### Community 8 - "Romaji Kana Page"
+### Community 8 - "Romaji to Kana Concepts"
 Cohesion: 0.67
 Nodes (3): Hepburn conversion rules, Romaji to kana conversion, Romaji to Kana page
 
-### Community 10 - "engines.test.cjs"
+### Community 10 - "Engine Tests"
 Cohesion: 0.13
 Nodes (9): assert, fs, keys, { LAYOUTS, SLOTS, convertText, scriptScore, romajiToKana }, path, root, sandbox, test (+1 more)
 
-### Community 11 - "Components"
+### Community 11 - "Design Components and Motion"
 Cohesion: 0.15
 Nodes (13): Buttons, Code Table (signature), Components, Copied Slip, Display Settings, Footer Credit, Inputs / Fields, Motion (+5 more)
 
-### Community 12 - "Product"
+### Community 12 - "Product Definition"
 Cohesion: 0.22
 Nodes (9): Capabilities and Constraints, Evidence on Hand, Operating Context, Platform, Positioning, Product, Product Principles, Product Purpose (+1 more)
 
-### Community 13 - "typewriter.js"
+### Community 13 - "Typed-Out Result and Copy"
 Cohesion: 0.36
 Nodes (6): createTypewriter(), set(), show(), stop(), reducedMotion, splitGraphemes()
 
-### Community 15 - "enhanceSelect"
+### Community 15 - "Layout Picker (Custom Select)"
 Cohesion: 0.39
 Nodes (7): enhanceSelect(), choose(), close(), open(), setActive(), sync(), typeahead()
 
-### Community 16 - "Roadmap"
+### Community 16 - "Product Roadmap"
 Cohesion: 0.29
 Nodes (6): Direction, Later: reach more people, Next: make the tools better at their job, Not planned, Now: foundations, Roadmap
 
@@ -126,17 +124,17 @@ Nodes (6): Direction, Later: reach more people, Next: make the tools better at t
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Design System: Oops/Wrong Layout` connect `Design System: Oops/Wrong Layout` to `README`, `Components`?**
+- **Why does `Design System: Oops/Wrong Layout` connect `Design System Overview` to `Project Docs and Agent Notes`, `Design Components and Motion`?**
   _High betweenness centrality (0.114) - this node is a cross-community bridge._
 - **What connects `Romaji-to-kana tests`, `Keyboard layout round-trip tests`, `Auto-detect conversion direction` to the rest of the system?**
   _7 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `CI Workflow` be split into smaller, more focused modules?**
+- **Should `GitHub Pages Build Workflow` be split into smaller, more focused modules?**
   _Cohesion score 0.14285714285714285 - nodes in this community are weakly interconnected._
-- **Why does `Project standards` connect `Project standards` to `README`?**
+- **Why does `Project standards` connect `Layout Engine and Project Rules` to `Project Docs and Agent Notes`?**
   _High betweenness centrality (0.061) - this node is a cross-community bridge._
-- **Should `Design System: Oops/Wrong Layout` be split into smaller, more focused modules?**
+- **Should `Design System Overview` be split into smaller, more focused modules?**
   _Cohesion score 0.10526315789473684 - nodes in this community are weakly interconnected._
-- **Why does `Components` connect `Components` to `Design System: Oops/Wrong Layout`?**
+- **Why does `Components` connect `Design Components and Motion` to `Design System Overview`?**
   _High betweenness centrality (0.054) - this node is a cross-community bridge._
-- **Should `Project standards` be split into smaller, more focused modules?**
+- **Should `Layout Engine and Project Rules` be split into smaller, more focused modules?**
   _Cohesion score 0.13333333333333333 - nodes in this community are weakly interconnected._

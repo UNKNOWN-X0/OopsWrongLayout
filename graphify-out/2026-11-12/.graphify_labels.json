@@ -1,9 +1,19 @@
 {
-  "0": "CI Workflow",
-  "2": "Project Guide and Tests",
-  "4": "Keyboard Conversion Engine",
-  "6": "Layout Fix Page",
-  "7": "Kana Mapping Data",
-  "8": "Romaji Kana Page",
-  "9": "Kana Conversion Engine"
+ "0": "GitHub Pages Build Workflow",
+ "1": "Layout Fix Page Logic",
+ "2": "Project Docs and Agent Notes",
+ "3": "Design System Overview",
+ "4": "Layout Engine and Project Rules",
+ "5": "Display Settings (Mode and Paper)",
+ "6": "Layout Fix Concepts",
+ "7": "Kana Lookup Table",
+ "8": "Romaji to Kana Concepts",
+ "9": "Kana Conversion Engine",
+ "10": "Engine Tests",
+ "11": "Design Components and Motion",
+ "12": "Product Definition",
+ "13": "Typed-Out Result and Copy",
+ "14": "Design Direction Contract",
+ "15": "Layout Picker (Custom Select)",
+ "16": "Product Roadmap"
 }
