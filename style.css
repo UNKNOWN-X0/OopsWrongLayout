@@ -458,6 +458,10 @@ svg.icon {
   }
 }
 /* the theme change wipes in from the control used (theme.js) */
+/* clicks pass through the wipe to the real page underneath */
+::view-transition {
+  pointer-events: none;
+}
 .theme-vt::view-transition-old(root),
 .theme-vt::view-transition-new(root) {
   animation: none;

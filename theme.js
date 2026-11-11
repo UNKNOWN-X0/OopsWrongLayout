@@ -70,6 +70,11 @@ function render() {
   syncControls();
 }
 
+// True while the colour wipe plays. The wipe is drawn on a layer over the
+// whole page, so a click during it must not count as a click outside.
+let wiping = false;
+let wipe = null;
+
 // Repaint with a circular wipe from the control that was used.
 function repaint(origin) {
   if (!document.startViewTransition || motionOff() || !origin) return render();
@@ -79,7 +84,9 @@ function repaint(origin) {
   const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
   const root = document.documentElement;
   root.classList.add("theme-vt");
+  wiping = true;
   const t = document.startViewTransition(render);
+  wipe = t;
   t.ready
     .then(() => {
       root.animate(
@@ -88,7 +95,12 @@ function repaint(origin) {
       );
     })
     .catch(() => {});
-  t.finished.finally(() => root.classList.remove("theme-vt"));
+  t.finished.finally(() => {
+    if (wipe !== t) return; // a newer wipe has started and owns the state
+    root.classList.remove("theme-vt");
+    wiping = false;
+    wipe = null;
+  });
 }
 
 const btn = document.getElementById("settingsBtn");
@@ -164,11 +176,27 @@ if (btn && panel) {
   panel.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closePanel(true);
   });
+  // A click during the wipe lands on the page root, not on what is under the
+  // pointer. End the wipe at once and hand the click to the real element.
+  document.addEventListener(
+    "pointerdown",
+    (e) => {
+      if (!wiping || !wipe || e.target !== document.documentElement) return;
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      wipe.skipTransition();
+      const el = document.elementFromPoint(e.clientX, e.clientY);
+      if (el?.closest(".settings")) el.closest("label, button")?.click();
+      else if (!panel.hidden) closePanel(false);
+    },
+    true,
+  );
+  const outside = (e) => !panel.hidden && !wiping && !e.target.closest(".settings");
   document.addEventListener("pointerdown", (e) => {
-    if (!panel.hidden && !e.target.closest(".settings")) closePanel(false);
+    if (outside(e)) closePanel(false);
   });
   document.addEventListener("focusin", (e) => {
-    if (!panel.hidden && !e.target.closest(".settings")) closePanel(false);
+    if (outside(e)) closePanel(false);
   });
 }
 
